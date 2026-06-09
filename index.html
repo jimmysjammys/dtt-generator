@@ -25,192 +25,94 @@
   .shell { display: flex; min-height: 100vh; }
 
   .sidebar {
-    width: 240px; flex-shrink: 0;
+    width: 230px; flex-shrink: 0;
     background: var(--surface);
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column;
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1rem;
     position: sticky; top: 0; height: 100vh; overflow-y: auto;
   }
 
-  .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 2rem; }
-  .logo-mark {
-    width: 30px; height: 30px; background: var(--accent);
-    border-radius: 7px; display: flex; align-items: center;
-    justify-content: center; color: white; font-size: 15px; font-weight: 600;
-  }
+  .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+  .logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 700; }
   .logo-text { font-size: 13px; font-weight: 600; }
   .logo-sub { font-size: 11px; color: var(--muted); }
 
-  .sidebar-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--hint); margin-bottom: 6px;
-  }
-  .sidebar-section { margin-bottom: 1.5rem; }
+  .sidebar-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hint); margin-bottom: 5px; margin-top: 1rem; }
 
   .level-btn {
-    width: 100%; text-align: left; padding: 7px 10px;
+    width: 100%; text-align: left; padding: 6px 9px;
     border-radius: 7px; border: none; background: transparent;
     color: var(--muted); font-family: inherit; font-size: 13px;
-    cursor: pointer; display: flex; align-items: center; gap: 8px;
-    transition: background 0.1s, color 0.1s;
+    cursor: pointer; display: flex; align-items: center; gap: 7px;
+    transition: background 0.1s, color 0.1s; margin-bottom: 2px;
   }
   .level-btn:hover { background: var(--surface2); color: var(--text); }
   .level-btn.active { background: var(--accent-bg); color: var(--accent-text); font-weight: 500; }
   .level-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
   .level-btn.active .level-dot { opacity: 1; }
 
+  .cat-group { margin-bottom: 0.25rem; }
+  .cat-group-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--hint); padding: 8px 9px 3px; }
   .cat-btn {
-    width: 100%; text-align: left; padding: 6px 10px;
+    width: 100%; text-align: left; padding: 5px 9px;
     border-radius: 7px; border: none; background: transparent;
-    color: var(--muted); font-family: inherit; font-size: 13px;
-    cursor: pointer; display: flex; align-items: center; gap: 8px;
-    transition: background 0.1s, color 0.1s;
+    color: var(--muted); font-family: inherit; font-size: 12.5px;
+    cursor: pointer; display: flex; align-items: center; gap: 7px;
+    transition: background 0.1s, color 0.1s; margin-bottom: 1px;
   }
   .cat-btn:hover { background: var(--surface2); color: var(--text); }
-  .cat-icon { font-size: 14px; width: 18px; text-align: center; }
+  .cat-btn.active { background: var(--accent-bg); color: var(--accent-text); font-weight: 500; }
+  .cat-icon { font-size: 13px; width: 16px; text-align: center; flex-shrink: 0; }
 
-  .sidebar-footer {
-    margin-top: auto; padding-top: 1rem;
-    border-top: 1px solid var(--border);
-    font-size: 11px; color: var(--hint); line-height: 1.6;
-  }
+  .sidebar-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 11px; color: var(--hint); line-height: 1.6; }
 
-  .main { flex: 1; padding: 2rem 2.5rem; }
+  .main { flex: 1; padding: 1.75rem 2rem; }
 
-  .page-title { font-size: 21px; font-weight: 600; margin-bottom: 3px; }
-  .page-sub { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+  .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
+  .page-title { font-size: 18px; font-weight: 600; }
+  .page-meta { font-size: 13px; color: var(--muted); }
 
-  .input-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  }
-  .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-  .input-row input {
-    flex: 1; padding: 10px 14px; font-size: 14px; font-family: inherit;
-    border: 1px solid var(--border); border-radius: 9px;
-    background: var(--bg); color: var(--text); outline: none;
-  }
-  .input-row input:focus { border-color: var(--accent); background: white; }
-  .input-row input::placeholder { color: var(--hint); }
-  .gen-btn {
-    padding: 10px 20px; font-size: 14px; font-family: inherit; font-weight: 500;
-    background: var(--accent); color: white; border: none; border-radius: 9px;
-    cursor: pointer; white-space: nowrap;
-  }
-  .gen-btn:hover { opacity: 0.88; }
-  .gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .chip {
-    font-size: 12px; font-family: inherit; padding: 4px 11px;
-    border: 1px solid var(--border); border-radius: 999px;
-    background: var(--bg); color: var(--muted); cursor: pointer;
-  }
-  .chip:hover { border-color: var(--accent); color: var(--accent-text); background: var(--accent-bg); }
-
-  .status-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1rem; min-height: 28px;
-  }
-  .status-text { font-size: 13px; color: var(--muted); }
-  .status-actions { display: flex; gap: 6px; }
-  .act-btn {
-    font-size: 12px; font-family: inherit; padding: 5px 12px;
-    border: 1px solid var(--border); border-radius: 7px;
-    background: var(--surface); color: var(--text); cursor: pointer;
-  }
+  .top-actions { display: flex; gap: 6px; }
+  .act-btn { font-size: 12px; font-family: inherit; padding: 6px 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; gap: 5px; }
   .act-btn:hover { background: var(--surface2); }
+  .act-btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .act-btn.primary:hover { opacity: 0.88; }
 
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
-  }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
 
   .dtt-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    aspect-ratio: 3/4;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column; aspect-ratio: 3/4;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     transition: box-shadow 0.15s, transform 0.15s;
   }
-  .dtt-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .dtt-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); transform: translateY(-2px); }
 
-  .card-img-wrap {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-    background: var(--surface2);
-  }
-  .card-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.3s;
-  }
-  .card-img-wrap img.loading { opacity: 0; }
-  .card-img-wrap img.loaded { opacity: 1; }
+  .card-img-wrap { flex: 1; position: relative; background: var(--surface2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-emoji-fallback { font-size: 52px; line-height: 1; }
 
-  .img-placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 40px;
-  }
+  .card-cat { position: absolute; top: 7px; right: 7px; font-size: 9px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; background: rgba(255,255,255,0.92); color: var(--accent-text); }
 
-  .card-cat {
-    position: absolute; top: 7px; right: 7px;
-    font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
-    text-transform: uppercase; padding: 2px 7px; border-radius: 999px;
-    background: rgba(255,255,255,0.9); color: var(--accent-text);
-    backdrop-filter: blur(4px);
-  }
-
-  .card-footer {
-    padding: 10px 10px 11px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
+  .card-footer { padding: 9px 10px 10px; border-top: 1px solid var(--border); text-align: center; background: var(--surface); }
   .card-word { font-size: 15px; font-weight: 600; line-height: 1.2; }
-  .card-hint { font-size: 10px; color: var(--hint); margin-top: 2px; }
+  .card-hint { font-size: 10px; color: var(--hint); margin-top: 2px; font-style: italic; }
 
-  @keyframes shimmer {
-    0% { background-position: -600px 0; }
-    100% { background-position: 600px 0; }
-  }
-  .skel {
-    background: linear-gradient(90deg, var(--surface2) 25%, #e8e4dc 50%, var(--surface2) 75%);
-    background-size: 1200px 100%;
-    animation: shimmer 1.5s infinite;
-  }
-  .skel-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 13px; overflow: hidden; aspect-ratio: 3/4;
-    display: flex; flex-direction: column;
-  }
-  .skel-img { flex: 1; }
-  .skel-footer { height: 52px; border-top: 1px solid var(--border); padding: 10px; display: flex; flex-direction: column; gap: 5px; align-items: center; }
-  .skel-line { border-radius: 4px; }
-
-  .empty-state {
-    grid-column: 1/-1; text-align: center;
-    padding: 4rem 0; color: var(--hint);
-  }
-  .empty-icon { font-size: 44px; margin-bottom: 12px; }
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 4rem 0; color: var(--hint); }
+  .empty-icon { font-size: 44px; margin-bottom: 10px; }
   .empty-title { font-size: 15px; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
   .empty-sub { font-size: 13px; }
 
   @media print {
-    .sidebar, .input-card, .status-bar, .page-title, .page-sub { display: none !important; }
+    .sidebar { display: none !important; }
     .main { padding: 0; }
+    .top-bar { display: none !important; }
     body { background: white; }
-    .card-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .dtt-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
-    .card-img-wrap img { opacity: 1 !important; }
+    .card-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; page-break-inside: auto; }
+    .dtt-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; border-radius: 8px; }
+    .card-img-wrap img { display: block !important; }
   }
 </style>
 </head>
@@ -222,206 +124,614 @@
       <div class="logo-mark">D</div>
       <div>
         <div class="logo-text">DTT Generator</div>
-        <div class="logo-sub">ABA materials</div>
+        <div class="logo-sub">ABA materials · ages 2–8</div>
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Skill level</div>
-      <button class="level-btn active" onclick="setLevel(this,'Early learner')"><span class="level-dot"></span>Early learner</button>
-      <button class="level-btn" onclick="setLevel(this,'Intermediate')"><span class="level-dot"></span>Intermediate</button>
-      <button class="level-btn" onclick="setLevel(this,'Advanced')"><span class="level-dot"></span>Advanced</button>
+    <div class="sidebar-label">Skill level</div>
+    <button class="level-btn active" onclick="setLevel(this,'early')"><span class="level-dot"></span>Early learner</button>
+    <button class="level-btn" onclick="setLevel(this,'intermediate')"><span class="level-dot"></span>Intermediate</button>
+
+    <div class="sidebar-label" style="margin-top:1.25rem;">Categories</div>
+
+    <div class="cat-group">
+      <div class="cat-group-label">Nouns</div>
+      <button class="cat-btn" onclick="loadCat(this,'animals')"><span class="cat-icon">🐘</span>Animals</button>
+      <button class="cat-btn" onclick="loadCat(this,'food')"><span class="cat-icon">🍎</span>Food & drink</button>
+      <button class="cat-btn" onclick="loadCat(this,'clothing')"><span class="cat-icon">👕</span>Clothing</button>
+      <button class="cat-btn" onclick="loadCat(this,'vehicles')"><span class="cat-icon">🚗</span>Vehicles</button>
+      <button class="cat-btn" onclick="loadCat(this,'household')"><span class="cat-icon">🏠</span>Household items</button>
+      <button class="cat-btn" onclick="loadCat(this,'bodyparts')"><span class="cat-icon">🖐</span>Body parts</button>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Quick categories</div>
-      <button class="cat-btn" onclick="quick('8 animal identification cards')"><span class="cat-icon">🐘</span>Animals</button>
-      <button class="cat-btn" onclick="quick('8 food and drink cards')"><span class="cat-icon">🍎</span>Food & drink</button>
-      <button class="cat-btn" onclick="quick('8 emotion cards')"><span class="cat-icon">😊</span>Emotions</button>
-      <button class="cat-btn" onclick="quick('8 body parts cards')"><span class="cat-icon">🖐</span>Body parts</button>
-      <button class="cat-btn" onclick="quick('8 community helper cards')"><span class="cat-icon">👩‍⚕️</span>Community helpers</button>
-      <button class="cat-btn" onclick="quick('Dolch pre-primer sight words, 8 cards')"><span class="cat-icon">🔤</span>Sight words</button>
-      <button class="cat-btn" onclick="quick('8 vehicle cards')"><span class="cat-icon">🚗</span>Vehicles</button>
-      <button class="cat-btn" onclick="quick('8 household item cards')"><span class="cat-icon">🏠</span>Household items</button>
-      <button class="cat-btn" onclick="quick('8 clothing item cards')"><span class="cat-icon">👕</span>Clothing</button>
-      <button class="cat-btn" onclick="quick('8 color and shape cards')"><span class="cat-icon">🎨</span>Colors & shapes</button>
+    <div class="cat-group">
+      <div class="cat-group-label">Actions</div>
+      <button class="cat-btn" onclick="loadCat(this,'actions')"><span class="cat-icon">🏃</span>Action verbs</button>
     </div>
 
-    <div class="sidebar-footer">
-      Print-ready 3×4 in cards.<br>
-      Generate → Print → Laminate.
+    <div class="cat-group">
+      <div class="cat-group-label">Community</div>
+      <button class="cat-btn" onclick="loadCat(this,'helpers')"><span class="cat-icon">👩‍⚕️</span>Community helpers</button>
+      <button class="cat-btn" onclick="loadCat(this,'places')"><span class="cat-icon">🏫</span>Places</button>
     </div>
+
+    <div class="cat-group">
+      <div class="cat-group-label">Social</div>
+      <button class="cat-btn" onclick="loadCat(this,'emotions')"><span class="cat-icon">😊</span>Emotions</button>
+    </div>
+
+    <div class="cat-group">
+      <div class="cat-group-label">Academic</div>
+      <button class="cat-btn" onclick="loadCat(this,'colors')"><span class="cat-icon">🎨</span>Colors</button>
+      <button class="cat-btn" onclick="loadCat(this,'shapes')"><span class="cat-icon">🔷</span>Shapes</button>
+      <button class="cat-btn" onclick="loadCat(this,'numbers')"><span class="cat-icon">🔢</span>Numbers 1–10</button>
+      <button class="cat-btn" onclick="loadCat(this,'letters')"><span class="cat-icon">🔤</span>Letters A–Z</button>
+    </div>
+
+    <div class="cat-group">
+      <div class="cat-group-label">Sight words</div>
+      <button class="cat-btn" onclick="loadCat(this,'dolch_preprimer')"><span class="cat-icon">📖</span>Dolch pre-primer</button>
+      <button class="cat-btn" onclick="loadCat(this,'dolch_primer')"><span class="cat-icon">📗</span>Dolch primer</button>
+    </div>
+
+    <div class="sidebar-footer">Print-ready 3×4 in cards.<br>Generate → Print → Laminate.</div>
   </nav>
 
   <main class="main">
-    <div class="page-title">DTT material generator</div>
-    <div class="page-sub">Type what you need or pick a category to get started.</div>
-
-    <div class="input-card">
-      <div class="input-row">
-        <input type="text" id="req" placeholder='e.g. "10 animal cards" or "sight words C-D, 8 cards"' />
-        <button class="gen-btn" id="genBtn" onclick="generate()">✦ Generate</button>
+    <div class="top-bar">
+      <div>
+        <div class="page-title" id="pageTitle">Select a category</div>
+        <div class="page-meta" id="pageMeta">Choose from the sidebar to get started</div>
       </div>
-      <div class="chips">
-        <span class="chip" onclick="quick('8 action verb cards')">Action verbs</span>
-        <span class="chip" onclick="quick('8 number cards 1 through 10')">Numbers 1–10</span>
-        <span class="chip" onclick="quick('8 weather cards')">Weather</span>
-        <span class="chip" onclick="quick('8 opposite concept cards')">Opposites</span>
-        <span class="chip" onclick="quick('8 preposition cards')">Prepositions</span>
-        <span class="chip" onclick="quick('8 classroom object cards')">Classroom items</span>
-      </div>
-    </div>
-
-    <div class="status-bar">
-      <div class="status-text" id="status">Ready to generate.</div>
-      <div class="status-actions" id="statusActions" style="display:none;">
-        <button class="act-btn" onclick="addMore()">+ Add 8 more</button>
-        <button class="act-btn" onclick="nextLevel()">↑ Next level</button>
-        <button class="act-btn" onclick="window.print()">🖨 Print</button>
+      <div class="top-actions">
+        <button class="act-btn" id="printBtn" style="display:none" onclick="window.print()">🖨 Print sheet</button>
       </div>
     </div>
 
     <div class="card-grid" id="grid">
       <div class="empty-state">
         <div class="empty-icon">🗂</div>
-        <div class="empty-title">No cards yet</div>
-        <div class="empty-sub">Pick a category or type a custom request above.</div>
+        <div class="empty-title">No cards loaded</div>
+        <div class="empty-sub">Pick a category from the sidebar.</div>
       </div>
     </div>
   </main>
 </div>
 
 <script>
-let level = 'Early learner';
-let cards = [];
-let lastReq = '';
+// ─────────────────────────────────────────────
+// CARD LIBRARY
+// Images use Wikimedia Commons direct URLs —
+// public domain / CC licensed, no API needed.
+// Each card: { label, img, hint, emoji }
+// ─────────────────────────────────────────────
+
+const LIBRARY = {
+
+  animals: {
+    early: [
+      { label:"Dog",    hint:"/dɒɡ/",   emoji:"🐶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/320px-YellowLabradorLooking_new.jpg" },
+      { label:"Cat",    hint:"/kæt/",   emoji:"🐱", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/320px-Cat_November_2010-1a.jpg" },
+      { label:"Bird",   hint:"/bɜːrd/", emoji:"🐦", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg" },
+      { label:"Fish",   hint:"/fɪʃ/",   emoji:"🐟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Clown_fish_in_the_Andaman_Coral_Reef.jpg/320px-Clown_fish_in_the_Andaman_Coral_Reef.jpg" },
+      { label:"Cow",    hint:"/kaʊ/",   emoji:"🐄", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Cow_female_black_white.jpg/320px-Cow_female_black_white.jpg" },
+      { label:"Horse",  hint:"/hɔːrs/", emoji:"🐴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/320px-Nokota_Horses_cropped.jpg" },
+      { label:"Duck",   hint:"/dʌk/",   emoji:"🦆", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/24701-nature-natural-beauty.jpg/320px-24701-nature-natural-beauty.jpg" },
+      { label:"Rabbit", hint:"/ˈræb.ɪt/",emoji:"🐰",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/320px-Oryctolagus_cuniculus_Rcdo.jpg" },
+      { label:"Pig",    hint:"/pɪɡ/",   emoji:"🐷", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pig_USDA.jpg/320px-Pig_USDA.jpg" },
+      { label:"Sheep",  hint:"/ʃiːp/",  emoji:"🐑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Sheep_-_most_white.jpg/320px-Sheep_-_most_white.jpg" },
+      { label:"Bear",   hint:"/bɛr/",   emoji:"🐻", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/320px-2010-kodiak-bear-1.jpg" },
+      { label:"Lion",   hint:"/ˈlaɪ.ən/",emoji:"🦁",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/320px-Lion_waiting_in_Namibia.jpg" },
+    ],
+    intermediate: [
+      { label:"Elephant",  hint:"/ˈel.ɪ.fənt/", emoji:"🐘", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/320px-African_Bush_Elephant.jpg" },
+      { label:"Giraffe",   hint:"/dʒɪˈrɑːf/",   emoji:"🦒", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/320px-Giraffe_Mikumi_National_Park.jpg" },
+      { label:"Penguin",   hint:"/ˈpeŋ.ɡwɪn/",  emoji:"🐧", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/South_Shetland-2016-Deception_Island%E2%80%93Chinstrap_penguin_%28Pygoscelis_antarctica%29_04.jpg/320px-South_Shetland-2016-Deception_Island%E2%80%93Chinstrap_penguin_%28Pygoscelis_antarctica%29_04.jpg" },
+      { label:"Dolphin",   hint:"/ˈdɒl.fɪn/",   emoji:"🐬", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/320px-Tursiops_truncatus_01.jpg" },
+      { label:"Tiger",     hint:"/ˈtaɪ.ɡər/",   emoji:"🐯", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/320px-Walking_tiger_female.jpg" },
+      { label:"Kangaroo",  hint:"/ˌkæŋ.ɡəˈruː/",emoji:"🦘", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kangaroo_Australia_filtered.jpg/320px-Kangaroo_Australia_filtered.jpg" },
+      { label:"Zebra",     hint:"/ˈziː.brə/",    emoji:"🦓", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Plains_Zebra_Equus_quagga.jpg/320px-Plains_Zebra_Equus_quagga.jpg" },
+      { label:"Monkey",    hint:"/ˈmʌŋ.ki/",     emoji:"🐒", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Barbary_macaque.jpg/320px-Barbary_macaque.jpg" },
+      { label:"Frog",      hint:"/frɒɡ/",         emoji:"🐸", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/A_Frog.jpg/320px-A_Frog.jpg" },
+      { label:"Butterfly", hint:"/ˈbʌt.ə.flaɪ/", emoji:"🦋", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Monarch_butterfly_2.jpg/320px-Monarch_butterfly_2.jpg" },
+    ],
+  },
+
+  food: {
+    early: [
+      { label:"Apple",   hint:"/ˈæp.əl/",  emoji:"🍎", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg" },
+      { label:"Banana",  hint:"/bəˈnɑː.nə/",emoji:"🍌",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Banana_Fruit_Photography.jpg/320px-Banana-Banana_Fruit_Photography.jpg" },
+      { label:"Bread",   hint:"/brɛd/",     emoji:"🍞", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fresh_made_bread_05.jpg/320px-Fresh_made_bread_05.jpg" },
+      { label:"Milk",    hint:"/mɪlk/",     emoji:"🥛", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Milk_glass.jpg/320px-Milk_glass.jpg" },
+      { label:"Egg",     hint:"/ɛɡ/",       emoji:"🥚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Egg_1.jpg/320px-Egg_1.jpg" },
+      { label:"Cookie",  hint:"/ˈkʊk.i/",   emoji:"🍪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Chocolate_Chip_Cookies_-_Evan_Swigart.jpg/320px-Above_Chocolate_Chip_Cookies_-_Evan_Swigart.jpg" },
+      { label:"Pizza",   hint:"/ˈpiːt.sə/", emoji:"🍕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/320px-Eq_it-na_pizza-margherita_sep2005_sml.jpg" },
+      { label:"Juice",   hint:"/dʒuːs/",    emoji:"🧃", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Glasses_of_orange_juice.jpg/320px-Glasses_of_orange_juice.jpg" },
+      { label:"Carrot",  hint:"/ˈkær.ət/",  emoji:"🥕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg" },
+      { label:"Cheese",  hint:"/tʃiːz/",    emoji:"🧀", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Sydney_Cheddar.jpg/320px-Sydney_Cheddar.jpg" },
+      { label:"Water",   hint:"/ˈwɔː.tər/", emoji:"💧", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/320px-24701-nature-natural-beauty.jpg" },
+      { label:"Grapes",  hint:"/ɡreɪps/",   emoji:"🍇", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+    ],
+    intermediate: [
+      { label:"Broccoli",    hint:"/ˈbrɒk.ə.li/",  emoji:"🥦", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Broccoli_and_cross_section_edit.jpg/320px-Broccoli_and_cross_section_edit.jpg" },
+      { label:"Strawberry",  hint:"/ˈstrɔː.bər.i/", emoji:"🍓", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg" },
+      { label:"Sandwich",    hint:"/ˈsæn.wɪdʒ/",   emoji:"🥪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Chicken_katsu_sandwich_at_Pret_A_Manger.jpg/320px-Chicken_katsu_sandwich_at_Pret_A_Manger.jpg" },
+      { label:"Corn",        hint:"/kɔːrn/",         emoji:"🌽", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Corn_macro.jpg/320px-Corn_macro.jpg" },
+      { label:"Watermelon",  hint:"/ˈwɔː.tə.mel.ən/",emoji:"🍉",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Watermelon_seedless_x_500.jpg/320px-Watermelon_seedless_x_500.jpg" },
+      { label:"Potato",      hint:"/pəˈteɪ.toʊ/",   emoji:"🥔", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Potato_je.jpg/320px-Potato_je.jpg" },
+      { label:"Pasta",       hint:"/ˈpæs.tə/",       emoji:"🍝", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Pasta_salad_closeup.jpg/320px-Pasta_salad_closeup.jpg" },
+      { label:"Rice",        hint:"/raɪs/",           emoji:"🍚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/White_rice.jpg/320px-White_rice.jpg" },
+    ],
+  },
+
+  clothing: {
+    early: [
+      { label:"Shirt",   hint:"/ʃɜːrt/",    emoji:"👕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Dress-shirt.jpg/320px-Dress-shirt.jpg" },
+      { label:"Pants",   hint:"/pænts/",    emoji:"👖", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Jeans_beinhaltet_Jeanshose%2C_Jeansjacke_und_Jeanshemd.jpg/320px-Jeans_beinhaltet_Jeanshose%2C_Jeansjacke_und_Jeanshemd.jpg" },
+      { label:"Shoes",   hint:"/ʃuːz/",     emoji:"👟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Shinnyo_en_shoes.jpg/320px-Shinnyo_en_shoes.jpg" },
+      { label:"Hat",     hint:"/hæt/",      emoji:"🧢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/320px-President_Barack_Obama.jpg" },
+      { label:"Socks",   hint:"/sɒks/",     emoji:"🧦", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tabi_%28Japanese_socks%29.jpg/320px-Tabi_%28Japanese_socks%29.jpg" },
+      { label:"Jacket",  hint:"/ˈdʒæk.ɪt/", emoji:"🧥", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Brown_jacket_front.jpg/320px-Brown_jacket_front.jpg" },
+      { label:"Dress",   hint:"/drɛs/",     emoji:"👗", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/A_little_red_dress.jpg/320px-A_little_red_dress.jpg" },
+      { label:"Gloves",  hint:"/ɡlʌvz/",   emoji:"🧤", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Woolen_winter_gloves.jpg/320px-Woolen_winter_gloves.jpg" },
+      { label:"Scarf",   hint:"/skɑːrf/",   emoji:"🧣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Scarf_around_neck.jpg/320px-Scarf_around_neck.jpg" },
+      { label:"Boots",   hint:"/buːts/",    emoji:"👢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Rubber_boots.jpg/320px-Rubber_boots.jpg" },
+    ],
+    intermediate: [
+      { label:"Sweater",   hint:"/ˈswet.ər/",    emoji:"🧶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Knit_top_in_purl_stitch.jpg/320px-Knit_top_in_purl_stitch.jpg" },
+      { label:"Pajamas",   hint:"/pəˈdʒɑː.məz/", emoji:"😴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Pajamas.jpg/320px-Pajamas.jpg" },
+      { label:"Raincoat",  hint:"/ˈreɪn.koʊt/",  emoji:"🌧",  img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Raincoat_2009.jpg/320px-Raincoat_2009.jpg" },
+      { label:"Mittens",   hint:"/ˈmɪt.ənz/",    emoji:"🧤", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Red_mittens.jpg/320px-Red_mittens.jpg" },
+      { label:"Swimsuit",  hint:"/ˈswɪm.suːt/",  emoji:"🩱", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Swimming_at_the_2012_Summer_Olympics_%E2%80%93_Women%27s_4_%C3%97_100_metre_freestyle_relay_heat_2.jpg/320px-Swimming_at_the_2012_Summer_Olympics_%E2%80%93_Women%27s_4_%C3%97_100_metre_freestyle_relay_heat_2.jpg" },
+      { label:"Uniform",   hint:"/ˈjuː.nɪ.fɔːrm/",emoji:"👔",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/School_children_in_uniform_in_Fiji.jpg/320px-School_children_in_uniform_in_Fiji.jpg" },
+    ],
+  },
+
+  vehicles: {
+    early: [
+      { label:"Car",        hint:"/kɑːr/",         emoji:"🚗", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/2019_Toyota_Corolla_NRE210R_SX_sedan_%282019-10-18%29_01.jpg/320px-2019_Toyota_Corolla_NRE210R_SX_sedan_%282019-10-18%29_01.jpg" },
+      { label:"Bus",        hint:"/bʌs/",           emoji:"🚌", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/School_bus_HASD.jpg/320px-School_bus_HASD.jpg" },
+      { label:"Truck",      hint:"/trʌk/",          emoji:"🚛", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Semi-trailer_truck_Scania_crop.jpg/320px-Semi-trailer_truck_Scania_crop.jpg" },
+      { label:"Bike",       hint:"/baɪk/",          emoji:"🚲", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Left_side_of_a_bicycle.jpg/320px-Left_side_of_a_bicycle.jpg" },
+      { label:"Airplane",   hint:"/ˈɛr.pleɪn/",     emoji:"✈️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Passenger_aircraft_landing.jpg/320px-Passenger_aircraft_landing.jpg" },
+      { label:"Boat",       hint:"/boʊt/",           emoji:"⛵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sailing_boat_at_Solent.jpg/320px-Sailing_boat_at_Solent.jpg" },
+      { label:"Train",      hint:"/treɪn/",          emoji:"🚆", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Acela_train_at_New_Haven.jpg/320px-Acela_train_at_New_Haven.jpg" },
+      { label:"Fire truck", hint:"/ˈfaɪər trʌk/",   emoji:"🚒", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/E-ONE_fire_engine_on_I-95.jpg/320px-E-ONE_fire_engine_on_I-95.jpg" },
+      { label:"Helicopter", hint:"/ˈhel.ɪ.kɒp.tər/",emoji:"🚁", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bell_412_helicopter.jpg/320px-Bell_412_helicopter.jpg" },
+      { label:"Ambulance",  hint:"/ˈæm.bjʊ.ləns/",  emoji:"🚑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Iveco_Daily_ambulance_-_Falck_Denmark.jpg/320px-Iveco_Daily_ambulance_-_Falck_Denmark.jpg" },
+    ],
+    intermediate: [
+      { label:"Submarine",  hint:"/ˈsʌb.məˌriːn/",  emoji:"🚢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Uss_dallas_submarine.jpg/320px-Uss_dallas_submarine.jpg" },
+      { label:"Motorcycle", hint:"/ˈmoʊ.tərˌsaɪ.kəl/",emoji:"🏍",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/2006_kawasaki_ninja_zx-14_motorcycle.jpg/320px-2006_kawasaki_ninja_zx-14_motorcycle.jpg" },
+      { label:"Tractor",    hint:"/ˈtræk.tər/",      emoji:"🚜", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Massey_Harris_Tractor.jpg/320px-Massey_Harris_Tractor.jpg" },
+      { label:"Sailboat",   hint:"/ˈseɪl.boʊt/",     emoji:"⛵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sailing_boat_at_Solent.jpg/320px-Sailing_boat_at_Solent.jpg" },
+    ],
+  },
+
+  household: {
+    early: [
+      { label:"Chair",   hint:"/tʃɛr/",      emoji:"🪑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Windsor_chair_thumbnail.png/320px-Windsor_chair_thumbnail.png" },
+      { label:"Table",   hint:"/ˈteɪ.bəl/",  emoji:"🪵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Table_de_salle_%C3%A0_manger.jpg/320px-Table_de_salle_%C3%A0_manger.jpg" },
+      { label:"Bed",     hint:"/bɛd/",        emoji:"🛏", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bed_linen.jpg/320px-Bed_linen.jpg" },
+      { label:"Cup",     hint:"/kʌp/",        emoji:"☕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/320px-A_small_cup_of_coffee.JPG" },
+      { label:"Spoon",   hint:"/spuːn/",      emoji:"🥄", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Spoons_and_forks.jpg/320px-Spoons_and_forks.jpg" },
+      { label:"Fork",    hint:"/fɔːrk/",      emoji:"🍴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Fork_and_spoon.jpg/320px-Fork_and_spoon.jpg" },
+      { label:"Book",    hint:"/bʊk/",        emoji:"📚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Ball",    hint:"/bɔːl/",       emoji:"⚽", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Classical_spectacular_-_Glastonbury_2003.jpg/320px-Classical_spectacular_-_Glastonbury_2003.jpg" },
+      { label:"Lamp",    hint:"/læmp/",       emoji:"💡", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Floor_lamp.jpg/320px-Floor_lamp.jpg" },
+      { label:"Door",    hint:"/dɔːr/",       emoji:"🚪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Wood_door.jpg/320px-Wood_door.jpg" },
+      { label:"Window",  hint:"/ˈwɪn.doʊ/",  emoji:"🪟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Rectangular_window_at_a_house.jpg/320px-Rectangular_window_at_a_house.jpg" },
+      { label:"Soap",    hint:"/soʊp/",       emoji:"🧼", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Dove_logo.jpg/320px-Dove_logo.jpg" },
+    ],
+    intermediate: [
+      { label:"Refrigerator", hint:"/rɪˈfrɪdʒ.ər.eɪ.tər/", emoji:"🧊", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Household_appliance_refrigerator.jpg/320px-Household_appliance_refrigerator.jpg" },
+      { label:"Microwave",    hint:"/ˈmaɪ.krə.weɪv/",      emoji:"📦", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Microwave_oven.jpg/320px-Microwave_oven.jpg" },
+      { label:"Toothbrush",   hint:"/ˈtuːθ.brʌʃ/",         emoji:"🪥", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Toothbrush_20050716_004.jpg/320px-Toothbrush_20050716_004.jpg" },
+      { label:"Pillow",       hint:"/ˈpɪl.oʊ/",             emoji:"🛌", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Pillow.jpg/320px-Pillow.jpg" },
+      { label:"Scissors",     hint:"/ˈsɪz.ərz/",            emoji:"✂️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Scissors.jpg/320px-Scissors.jpg" },
+      { label:"Telephone",    hint:"/ˈtel.ɪ.foʊn/",         emoji:"📞", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Telephone-face.jpg/320px-Telephone-face.jpg" },
+    ],
+  },
+
+  bodyparts: {
+    early: [
+      { label:"Hand",    hint:"/hænd/",     emoji:"✋", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Human-Hands-Front-Back.jpg/320px-Human-Hands-Front-Back.jpg" },
+      { label:"Foot",    hint:"/fʊt/",      emoji:"🦶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Toddler_foot_edit_2.jpg/320px-Toddler_foot_edit_2.jpg" },
+      { label:"Eye",     hint:"/aɪ/",       emoji:"👁", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eye_- _right.jpg/320px-Eye_-_right.jpg" },
+      { label:"Ear",     hint:"/ɪr/",       emoji:"👂", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Human_ear.jpg/320px-Human_ear.jpg" },
+      { label:"Nose",    hint:"/noʊz/",     emoji:"👃", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Nose_%28anatomy%29.png/320px-Nose_%28anatomy%29.png" },
+      { label:"Mouth",   hint:"/maʊθ/",     emoji:"👄", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mouth_smile.jpg/320px-Mouth_smile.jpg" },
+      { label:"Hair",    hint:"/hɛr/",      emoji:"💇", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/FemaleHairCloseup.jpg/320px-FemaleHairCloseup.jpg" },
+      { label:"Arm",     hint:"/ɑːrm/",     emoji:"💪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Arm_flex_2.jpg/320px-Arm_flex_2.jpg" },
+      { label:"Leg",     hint:"/lɛɡ/",      emoji:"🦵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Leg_flex.jpg/320px-Leg_flex.jpg" },
+      { label:"Tummy",   hint:"/ˈtʌm.i/",   emoji:"🫃", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Front_of_a_girl.jpg/320px-Front_of_a_girl.jpg" },
+    ],
+    intermediate: [
+      { label:"Shoulder", hint:"/ˈʃoʊl.dər/", emoji:"🙆", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Shoulder_abduction.jpg/320px-Shoulder_abduction.jpg" },
+      { label:"Elbow",    hint:"/ˈɛl.boʊ/",   emoji:"💪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Elbow_flex.jpg/320px-Elbow_flex.jpg" },
+      { label:"Knee",     hint:"/niː/",        emoji:"🦵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Knee_front.jpg/320px-Knee_front.jpg" },
+      { label:"Chin",     hint:"/tʃɪn/",       emoji:"😊", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Tongue",   hint:"/tʌŋ/",        emoji:"👅", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VanGogh-starry_night_ballance1.jpg/320px-VanGogh-starry_night_ballance1.jpg" },
+      { label:"Wrist",    hint:"/rɪst/",       emoji:"⌚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg" },
+    ],
+  },
+
+  actions: {
+    early: [
+      { label:"Eating",    hint:"present action", emoji:"🍽", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/320px-Good_Food_Display_-_NCI_Visuals_Online.jpg" },
+      { label:"Sleeping",  hint:"present action", emoji:"😴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cat_sleeping_on_a_sofa.jpg/320px-Cat_sleeping_on_a_sofa.jpg" },
+      { label:"Running",   hint:"present action", emoji:"🏃", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Running_-_cross_country_skiing.jpg/320px-Running_-_cross_country_skiing.jpg" },
+      { label:"Jumping",   hint:"present action", emoji:"🦘", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Jumping_at_the_beach.jpg/320px-Jumping_at_the_beach.jpg" },
+      { label:"Drinking",  hint:"present action", emoji:"🥤", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Glasses_of_orange_juice.jpg/320px-Glasses_of_orange_juice.jpg" },
+      { label:"Sitting",   hint:"present action", emoji:"🪑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Windsor_chair_thumbnail.png/320px-Windsor_chair_thumbnail.png" },
+      { label:"Standing",  hint:"present action", emoji:"🧍", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Playing",   hint:"present action", emoji:"🎮", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Crying",    hint:"present action", emoji:"😢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Laughing",  hint:"present action", emoji:"😄", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Washing",   hint:"present action", emoji:"🧼", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Toothbrush_20050716_004.jpg/320px-Toothbrush_20050716_004.jpg" },
+      { label:"Reading",   hint:"present action", emoji:"📖", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+    ],
+    intermediate: [
+      { label:"Climbing",  hint:"present action", emoji:"🧗", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Swimming",  hint:"present action", emoji:"🏊", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Passenger_aircraft_landing.jpg/320px-Passenger_aircraft_landing.jpg" },
+      { label:"Drawing",   hint:"present action", emoji:"✏️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Clapping",  hint:"present action", emoji:"👏", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Pointing",  hint:"present action", emoji:"👉", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Hugging",   hint:"present action", emoji:"🤗", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+    ],
+  },
+
+  helpers: {
+    early: [
+      { label:"Doctor",    hint:"/ˈdɒk.tər/",   emoji:"👨‍⚕️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Doctor_and_little_girl.jpg/320px-Doctor_and_little_girl.jpg" },
+      { label:"Nurse",     hint:"/nɜːrs/",       emoji:"👩‍⚕️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Nurse_practitioners.jpg/320px-Nurse_practitioners.jpg" },
+      { label:"Teacher",   hint:"/ˈtiː.tʃər/",   emoji:"👩‍🏫", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Teacher_and_students_Kyoto.jpg/320px-Teacher_and_students_Kyoto.jpg" },
+      { label:"Firefighter",hint:"/ˈfaɪər.faɪ.tər/",emoji:"👨‍🚒",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/US_Navy_040917-N-6536T-001_Members_of_the_Explosive_Ordnance_Disposal_%28EOD%29_Mobile_Unit_6.jpg/320px-US_Navy_040917-N-6536T-001_Members_of_the_Explosive_Ordnance_Disposal_%28EOD%29_Mobile_Unit_6.jpg" },
+      { label:"Police",    hint:"/pəˈliːs/",     emoji:"👮", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Police_motorcycle_escort.jpg/320px-Police_motorcycle_escort.jpg" },
+      { label:"Chef",      hint:"/ʃɛf/",         emoji:"👨‍🍳", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/A_small_cup_of_coffee.JPG/320px-A_small_cup_of_coffee.JPG" },
+      { label:"Dentist",   hint:"/ˈden.tɪst/",   emoji:"🦷", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Dental_hygienist.jpg/320px-Dental_hygienist.jpg" },
+      { label:"Farmer",    hint:"/ˈfɑːr.mər/",   emoji:"👨‍🌾", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Massey_Harris_Tractor.jpg/320px-Massey_Harris_Tractor.jpg" },
+    ],
+    intermediate: [
+      { label:"Librarian", hint:"/laɪˈbrɛr.i.ən/",emoji:"📚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Mailman",   hint:"/ˈmeɪl.mæn/",    emoji:"📬", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Pilot",     hint:"/ˈpaɪ.lət/",     emoji:"✈️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Passenger_aircraft_landing.jpg/320px-Passenger_aircraft_landing.jpg" },
+      { label:"Vet",       hint:"/vɛt/",           emoji:"🐾", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/320px-YellowLabradorLooking_new.jpg" },
+    ],
+  },
+
+  places: {
+    early: [
+      { label:"School",    hint:"/skuːl/",     emoji:"🏫", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gundagai_school.jpg/320px-Gundagai_school.jpg" },
+      { label:"Home",      hint:"/hoʊm/",      emoji:"🏠", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Suburban_single_family_home.jpg/320px-Suburban_single_family_home.jpg" },
+      { label:"Park",      hint:"/pɑːrk/",     emoji:"🌳", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Burnham_Park.jpg/320px-Burnham_Park.jpg" },
+      { label:"Store",     hint:"/stɔːr/",     emoji:"🏪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Supermarkt.jpg/320px-Supermarkt.jpg" },
+      { label:"Hospital",  hint:"/ˈhɒs.pɪ.tl/",emoji:"🏥", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/SMMC_Stony_Brook.JPG/320px-SMMC_Stony_Brook.JPG" },
+      { label:"Library",   hint:"/ˈlaɪ.brər.i/",emoji:"📚",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Beach",     hint:"/biːtʃ/",     emoji:"🏖", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/320px-GoldenGateBridge-001.jpg" },
+      { label:"Playground",hint:"/ˈpleɪ.ɡraʊnd/",emoji:"🛝",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Climbing_frame_IMG_4766.jpg/320px-Climbing_frame_IMG_4766.jpg" },
+    ],
+    intermediate: [
+      { label:"Restaurant", hint:"/ˈrɛs.tər.ɑːnt/",emoji:"🍽", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/320px-Good_Food_Display_-_NCI_Visuals_Online.jpg" },
+      { label:"Airport",    hint:"/ˈɛr.pɔːrt/",    emoji:"✈️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Passenger_aircraft_landing.jpg/320px-Passenger_aircraft_landing.jpg" },
+      { label:"Zoo",        hint:"/zuː/",            emoji:"🦁", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/320px-Lion_waiting_in_Namibia.jpg" },
+      { label:"Farm",       hint:"/fɑːrm/",          emoji:"🌾", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Massey_Harris_Tractor.jpg/320px-Massey_Harris_Tractor.jpg" },
+    ],
+  },
+
+  emotions: {
+    early: [
+      { label:"Happy",   hint:"feeling good",   emoji:"😊", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Sad",     hint:"feeling down",   emoji:"😢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Angry",   hint:"feeling mad",    emoji:"😠", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Scared",  hint:"feeling afraid", emoji:"😨", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Excited", hint:"feeling great",  emoji:"🤩", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Tired",   hint:"feeling sleepy", emoji:"😴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cat_sleeping_on_a_sofa.jpg/320px-Cat_sleeping_on_a_sofa.jpg" },
+      { label:"Silly",   hint:"feeling funny",  emoji:"🤪", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Hurt",    hint:"feeling pain",   emoji:"🤕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+    ],
+    intermediate: [
+      { label:"Frustrated", hint:"feeling stuck",       emoji:"😤", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Surprised",  hint:"feeling shocked",     emoji:"😲", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Proud",      hint:"feeling good about self",emoji:"😤",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Calm",       hint:"feeling relaxed",     emoji:"😌", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Worried",    hint:"feeling nervous",     emoji:"😟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+      { label:"Bored",      hint:"nothing to do",       emoji:"😑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg" },
+    ],
+  },
+
+  colors: {
+    early: [
+      { label:"Red",    hint:"primary color", emoji:"🔴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Red_apple.jpg/320px-Red_apple.jpg" },
+      { label:"Blue",   hint:"primary color", emoji:"🔵", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Passenger_aircraft_landing.jpg/320px-Passenger_aircraft_landing.jpg" },
+      { label:"Yellow", hint:"primary color", emoji:"🟡", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Banana_Fruit_Photography.jpg/320px-Banana-Banana_Fruit_Photography.jpg" },
+      { label:"Green",  hint:"secondary color",emoji:"🟢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Broccoli_and_cross_section_edit.jpg/320px-Broccoli_and_cross_section_edit.jpg" },
+      { label:"Orange", hint:"secondary color",emoji:"🟠", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg" },
+      { label:"Purple", hint:"secondary color",emoji:"🟣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+      { label:"Pink",   hint:"light red",     emoji:"🌸", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Sunflower_from_Silesia2.jpg/320px-Sunflower_from_Silesia2.jpg" },
+      { label:"Black",  hint:"darkest color", emoji:"⬛", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/320px-Lion_waiting_in_Namibia.jpg" },
+      { label:"White",  hint:"lightest color",emoji:"⬜", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Sheep_-_most_white.jpg/320px-Sheep_-_most_white.jpg" },
+      { label:"Brown",  hint:"earth color",   emoji:"🟫", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fresh_made_bread_05.jpg/320px-Fresh_made_bread_05.jpg" },
+    ],
+    intermediate: [
+      { label:"Gray",   hint:"between black and white", emoji:"🩶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Sheep_-_most_white.jpg/320px-Sheep_-_most_white.jpg" },
+      { label:"Gold",   hint:"shiny yellow",            emoji:"🌟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Banana_Fruit_Photography.jpg/320px-Banana-Banana_Fruit_Photography.jpg" },
+    ],
+  },
+
+  shapes: {
+    early: [
+      { label:"Circle",   hint:"round shape",      emoji:"⭕", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Clown_fish_in_the_Andaman_Coral_Reef.jpg/320px-Clown_fish_in_the_Andaman_Coral_Reef.jpg" },
+      { label:"Square",   hint:"4 equal sides",    emoji:"🟥", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Table_de_salle_%C3%A0_manger.jpg/320px-Table_de_salle_%C3%A0_manger.jpg" },
+      { label:"Triangle", hint:"3 sides",          emoji:"🔺", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Burnham_Park.jpg/320px-Burnham_Park.jpg" },
+      { label:"Rectangle",hint:"4 sides, 2 long",  emoji:"▬",  img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bed_linen.jpg/320px-Bed_linen.jpg" },
+      { label:"Star",     hint:"pointed shape",    emoji:"⭐", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Banana_Fruit_Photography.jpg/320px-Banana-Banana_Fruit_Photography.jpg" },
+      { label:"Heart",    hint:"love shape",       emoji:"❤️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Sunflower_from_Silesia2.jpg/320px-Sunflower_from_Silesia2.jpg" },
+      { label:"Diamond",  hint:"tilted square",    emoji:"🔷", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+      { label:"Oval",     hint:"stretched circle", emoji:"🥚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Egg_1.jpg/320px-Egg_1.jpg" },
+    ],
+    intermediate: [
+      { label:"Hexagon",  hint:"6 sides",   emoji:"⬡", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Pentagon", hint:"5 sides",   emoji:"⬠", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+    ],
+  },
+
+  numbers: {
+    early: [
+      { label:"1 – One",   hint:"count: 1", emoji:"1️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg" },
+      { label:"2 – Two",   hint:"count: 2", emoji:"2️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Human-Hands-Front-Back.jpg/320px-Human-Hands-Front-Back.jpg" },
+      { label:"3 – Three", hint:"count: 3", emoji:"3️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+      { label:"4 – Four",  hint:"count: 4", emoji:"4️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/320px-Giraffe_Mikumi_National_Park.jpg" },
+      { label:"5 – Five",  hint:"count: 5", emoji:"5️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg" },
+      { label:"6 – Six",   hint:"count: 6", emoji:"6️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Clown_fish_in_the_Andaman_Coral_Reef.jpg/320px-Clown_fish_in_the_Andaman_Coral_Reef.jpg" },
+      { label:"7 – Seven", hint:"count: 7", emoji:"7️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/320px-African_Bush_Elephant.jpg" },
+      { label:"8 – Eight", hint:"count: 8", emoji:"8️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg" },
+      { label:"9 – Nine",  hint:"count: 9", emoji:"9️⃣", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg" },
+      { label:"10 – Ten",  hint:"count: 10",emoji:"🔟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Toddler_foot_edit_2.jpg/320px-Toddler_foot_edit_2.jpg" },
+    ],
+    intermediate: [
+      { label:"11 – Eleven",   hint:"count: 11", emoji:"🔢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg" },
+      { label:"12 – Twelve",   hint:"count: 12", emoji:"🔢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Banana_Fruit_Photography.jpg/320px-Banana-Banana_Fruit_Photography.jpg" },
+      { label:"20 – Twenty",   hint:"count: 20", emoji:"🔢", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+    ],
+  },
+
+  letters: {
+    early: [
+      { label:"A",  hint:"/eɪ/  –  Apple",    emoji:"🅰", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg" },
+      { label:"B",  hint:"/biː/ –  Ball",     emoji:"🅱", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"C",  hint:"/siː/ –  Cat",      emoji:"🐱", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/320px-Cat_November_2010-1a.jpg" },
+      { label:"D",  hint:"/diː/ –  Dog",      emoji:"🐶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/320px-YellowLabradorLooking_new.jpg" },
+      { label:"E",  hint:"/iː/  –  Egg",      emoji:"🥚", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Egg_1.jpg/320px-Egg_1.jpg" },
+      { label:"F",  hint:"/ɛf/  –  Fish",     emoji:"🐟", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Clown_fish_in_the_Andaman_Coral_Reef.jpg/320px-Clown_fish_in_the_Andaman_Coral_Reef.jpg" },
+      { label:"G",  hint:"/dʒiː/–  Grapes",   emoji:"🍇", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg" },
+      { label:"H",  hint:"/eɪtʃ/– Horse",     emoji:"🐴", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/320px-Nokota_Horses_cropped.jpg" },
+      { label:"I",  hint:"/aɪ/  –  Ice cream",emoji:"🍦", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/320px-African_Bush_Elephant.jpg" },
+      { label:"J",  hint:"/dʒeɪ/–  Juice",    emoji:"🧃", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Glasses_of_orange_juice.jpg/320px-Glasses_of_orange_juice.jpg" },
+      { label:"K",  hint:"/keɪ/ –  Kite",     emoji:"🪁", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kangaroo_Australia_filtered.jpg/320px-Kangaroo_Australia_filtered.jpg" },
+      { label:"L",  hint:"/ɛl/  –  Lion",     emoji:"🦁", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/320px-Lion_waiting_in_Namibia.jpg" },
+      { label:"M",  hint:"/ɛm/  –  Milk",     emoji:"🥛", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Milk_glass.jpg/320px-Milk_glass.jpg" },
+      { label:"N",  hint:"/ɛn/  –  Nest",     emoji:"🪺", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/320px-Giraffe_Mikumi_National_Park.jpg" },
+      { label:"O",  hint:"/oʊ/  –  Orange",   emoji:"🍊", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg" },
+      { label:"P",  hint:"/piː/ –  Pig",      emoji:"🐷", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pig_USDA.jpg/320px-Pig_USDA.jpg" },
+      { label:"Q",  hint:"/kjuː/–  Queen",    emoji:"👑", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"R",  hint:"/ɑːr/ –  Rabbit",   emoji:"🐰", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/320px-Oryctolagus_cuniculus_Rcdo.jpg" },
+      { label:"S",  hint:"/ɛs/  –  Sun",      emoji:"☀️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Sheep_-_most_white.jpg/320px-Sheep_-_most_white.jpg" },
+      { label:"T",  hint:"/tiː/ –  Train",    emoji:"🚆", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Acela_train_at_New_Haven.jpg/320px-Acela_train_at_New_Haven.jpg" },
+      { label:"U",  hint:"/juː/ –  Umbrella", emoji:"☂️", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"V",  hint:"/viː/ –  Van",      emoji:"🚐", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"W",  hint:"/dʌb.l.juː/–Water", emoji:"💧", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Milk_glass.jpg/320px-Milk_glass.jpg" },
+      { label:"X",  hint:"/ɛks/ –  X-ray",   emoji:"🩻", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Y",  hint:"/waɪ/ –  Yarn",    emoji:"🧶", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Les_livres.jpg/320px-Les_livres.jpg" },
+      { label:"Z",  hint:"/ziː/ –  Zebra",   emoji:"🦓", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Plains_Zebra_Equus_quagga.jpg/320px-Plains_Zebra_Equus_quagga.jpg" },
+    ],
+    intermediate: [],
+  },
+
+  dolch_preprimer: {
+    early: [
+      { label:"a",    hint:"article",     emoji:"📖", img:"" },
+      { label:"and",  hint:"joining word",emoji:"📖", img:"" },
+      { label:"away", hint:"direction",   emoji:"📖", img:"" },
+      { label:"big",  hint:"describing",  emoji:"📖", img:"" },
+      { label:"blue", hint:"color word",  emoji:"📖", img:"" },
+      { label:"can",  hint:"ability",     emoji:"📖", img:"" },
+      { label:"come", hint:"action",      emoji:"📖", img:"" },
+      { label:"down", hint:"direction",   emoji:"📖", img:"" },
+      { label:"find", hint:"action",      emoji:"📖", img:"" },
+      { label:"for",  hint:"preposition", emoji:"📖", img:"" },
+      { label:"funny",hint:"describing",  emoji:"📖", img:"" },
+      { label:"go",   hint:"action",      emoji:"📖", img:"" },
+      { label:"help", hint:"action",      emoji:"📖", img:"" },
+      { label:"here", hint:"location",    emoji:"📖", img:"" },
+      { label:"I",    hint:"pronoun",     emoji:"📖", img:"" },
+      { label:"in",   hint:"preposition", emoji:"📖", img:"" },
+      { label:"is",   hint:"verb to be",  emoji:"📖", img:"" },
+      { label:"it",   hint:"pronoun",     emoji:"📖", img:"" },
+      { label:"jump", hint:"action",      emoji:"📖", img:"" },
+      { label:"little",hint:"describing", emoji:"📖", img:"" },
+      { label:"look", hint:"action",      emoji:"📖", img:"" },
+      { label:"make", hint:"action",      emoji:"📖", img:"" },
+      { label:"me",   hint:"pronoun",     emoji:"📖", img:"" },
+      { label:"my",   hint:"possessive",  emoji:"📖", img:"" },
+      { label:"not",  hint:"negation",    emoji:"📖", img:"" },
+      { label:"one",  hint:"number",      emoji:"📖", img:"" },
+      { label:"play", hint:"action",      emoji:"📖", img:"" },
+      { label:"red",  hint:"color word",  emoji:"📖", img:"" },
+      { label:"run",  hint:"action",      emoji:"📖", img:"" },
+      { label:"said", hint:"past action", emoji:"📖", img:"" },
+      { label:"see",  hint:"action",      emoji:"📖", img:"" },
+      { label:"the",  hint:"article",     emoji:"📖", img:"" },
+      { label:"three",hint:"number",      emoji:"📖", img:"" },
+      { label:"to",   hint:"preposition", emoji:"📖", img:"" },
+      { label:"two",  hint:"number",      emoji:"📖", img:"" },
+      { label:"up",   hint:"direction",   emoji:"📖", img:"" },
+      { label:"we",   hint:"pronoun",     emoji:"📖", img:"" },
+      { label:"where",hint:"question",    emoji:"📖", img:"" },
+      { label:"yellow",hint:"color word", emoji:"📖", img:"" },
+      { label:"you",  hint:"pronoun",     emoji:"📖", img:"" },
+    ],
+    intermediate: [],
+  },
+
+  dolch_primer: {
+    early: [
+      { label:"all",   hint:"quantity",    emoji:"📗", img:"" },
+      { label:"am",    hint:"verb to be",  emoji:"📗", img:"" },
+      { label:"are",   hint:"verb to be",  emoji:"📗", img:"" },
+      { label:"at",    hint:"preposition", emoji:"📗", img:"" },
+      { label:"ate",   hint:"past action", emoji:"📗", img:"" },
+      { label:"be",    hint:"verb to be",  emoji:"📗", img:"" },
+      { label:"black", hint:"color word",  emoji:"📗", img:"" },
+      { label:"brown", hint:"color word",  emoji:"📗", img:"" },
+      { label:"but",   hint:"conjunction", emoji:"📗", img:"" },
+      { label:"came",  hint:"past action", emoji:"📗", img:"" },
+      { label:"did",   hint:"past action", emoji:"📗", img:"" },
+      { label:"do",    hint:"action",      emoji:"📗", img:"" },
+      { label:"eat",   hint:"action",      emoji:"📗", img:"" },
+      { label:"four",  hint:"number",      emoji:"📗", img:"" },
+      { label:"get",   hint:"action",      emoji:"📗", img:"" },
+      { label:"good",  hint:"describing",  emoji:"📗", img:"" },
+      { label:"have",  hint:"action",      emoji:"📗", img:"" },
+      { label:"he",    hint:"pronoun",     emoji:"📗", img:"" },
+      { label:"into",  hint:"preposition", emoji:"📗", img:"" },
+      { label:"like",  hint:"action",      emoji:"📗", img:"" },
+      { label:"must",  hint:"necessity",   emoji:"📗", img:"" },
+      { label:"new",   hint:"describing",  emoji:"📗", img:"" },
+      { label:"no",    hint:"negation",    emoji:"📗", img:"" },
+      { label:"now",   hint:"time",        emoji:"📗", img:"" },
+      { label:"on",    hint:"preposition", emoji:"📗", img:"" },
+      { label:"our",   hint:"possessive",  emoji:"📗", img:"" },
+      { label:"out",   hint:"direction",   emoji:"📗", img:"" },
+      { label:"please",hint:"polite word", emoji:"📗", img:"" },
+      { label:"pretty",hint:"describing",  emoji:"📗", img:"" },
+      { label:"ran",   hint:"past action", emoji:"📗", img:"" },
+      { label:"ride",  hint:"action",      emoji:"📗", img:"" },
+      { label:"saw",   hint:"past action", emoji:"📗", img:"" },
+      { label:"say",   hint:"action",      emoji:"📗", img:"" },
+      { label:"she",   hint:"pronoun",     emoji:"📗", img:"" },
+      { label:"so",    hint:"conjunction", emoji:"📗", img:"" },
+      { label:"soon",  hint:"time",        emoji:"📗", img:"" },
+      { label:"that",  hint:"determiner",  emoji:"📗", img:"" },
+      { label:"there", hint:"location",    emoji:"📗", img:"" },
+      { label:"they",  hint:"pronoun",     emoji:"📗", img:"" },
+      { label:"this",  hint:"determiner",  emoji:"📗", img:"" },
+      { label:"too",   hint:"also",        emoji:"📗", img:"" },
+      { label:"under", hint:"preposition", emoji:"📗", img:"" },
+      { label:"want",  hint:"action",      emoji:"📗", img:"" },
+      { label:"was",   hint:"past action", emoji:"📗", img:"" },
+      { label:"well",  hint:"describing",  emoji:"📗", img:"" },
+      { label:"went",  hint:"past action", emoji:"📗", img:"" },
+      { label:"what",  hint:"question",    emoji:"📗", img:"" },
+      { label:"white", hint:"color word",  emoji:"📗", img:"" },
+      { label:"who",   hint:"question",    emoji:"📗", img:"" },
+      { label:"will",  hint:"future",      emoji:"📗", img:"" },
+      { label:"with",  hint:"preposition", emoji:"📗", img:"" },
+      { label:"yes",   hint:"agreement",   emoji:"📗", img:"" },
+    ],
+    intermediate: [],
+  },
+
+};
+
+// ─────────────────────────────────────────────
+// APP STATE
+// ─────────────────────────────────────────────
+let currentLevel = 'early';
+let currentCat = null;
 
 function setLevel(btn, l) {
   document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  level = l;
+  currentLevel = l;
+  if (currentCat) loadCat(document.querySelector('.cat-btn.active'), currentCat);
 }
 
-function quick(text) {
-  document.getElementById('req').value = text;
-  generate();
+function loadCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentCat = cat;
+
+  const catNames = {
+    animals:'Animals', food:'Food & drink', clothing:'Clothing',
+    vehicles:'Vehicles', household:'Household items', bodyparts:'Body parts',
+    actions:'Action verbs', helpers:'Community helpers', places:'Places',
+    emotions:'Emotions', colors:'Colors', shapes:'Shapes',
+    numbers:'Numbers 1–10', letters:'Letters A–Z',
+    dolch_preprimer:'Sight words – Dolch pre-primer',
+    dolch_primer:'Sight words – Dolch primer',
+  };
+
+  const data = (LIBRARY[cat] || {})[currentLevel] || LIBRARY[cat]?.early || [];
+  const levelLabel = currentLevel === 'early' ? 'Early learner' : 'Intermediate';
+
+  document.getElementById('pageTitle').textContent = catNames[cat] || cat;
+  document.getElementById('pageMeta').textContent = `${levelLabel}  ·  ${data.length} cards`;
+  document.getElementById('printBtn').style.display = 'inline-flex';
+
+  renderCards(data);
 }
 
-function showSkeletons(n) {
-  document.getElementById('grid').innerHTML = Array(n).fill(0).map(() => `
-    <div class="skel-card">
-      <div class="skel-img skel"></div>
-      <div class="skel-footer">
-        <div class="skel-line skel" style="width:60%;height:13px;"></div>
-        <div class="skel-line skel" style="width:38%;height:9px;"></div>
-      </div>
-    </div>`).join('');
-}
+function renderCards(data) {
+  const isSightWord = currentCat && currentCat.startsWith('dolch');
 
-async function generate() {
-  const input = document.getElementById('req').value.trim();
-  if (!input) return;
-  lastReq = input;
-  await run(input, false);
-}
-
-async function addMore() { await run(lastReq, true); }
-
-async function nextLevel() {
-  const levels = ['Early learner','Intermediate','Advanced'];
-  const idx = levels.indexOf(level);
-  if (idx < levels.length - 1) {
-    level = levels[idx + 1];
-    document.querySelectorAll('.level-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.trim() === level);
-    });
+  if (!data.length) {
+    document.getElementById('grid').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🗂</div>
+        <div class="empty-title">No cards at this level</div>
+        <div class="empty-sub">Try switching to Early learner.</div>
+      </div>`;
+    return;
   }
-  await run(lastReq, false);
-}
 
-async function run(input, append) {
-  const status = document.getElementById('status');
-  const actions = document.getElementById('statusActions');
-  const btn = document.getElementById('genBtn');
-
-  btn.disabled = true;
-  status.textContent = 'Generating cards...';
-  if (!append) { actions.style.display = 'none'; showSkeletons(8); }
-
-  const system = `You are a specialist in ABA therapy DTT flashcard materials. Return ONLY a valid JSON array — no markdown, no backticks, no explanation whatsoever.
-
-Each object must have exactly these fields:
-- "label": the word shown on the card (1-3 words, sentence case)
-- "imageQuery": a short, specific Unsplash search query that will return a clear, clean photo of this exact item on a simple background. Be very specific. For objects, use queries like "red apple white background", "school bus isolated", "golden retriever dog". For emotions, use "child happy smiling", "person sad face". For community helpers, use the job title and action like "doctor examining patient". For sight words, use a simple scene that illustrates the word, e.g. for "the" use "simple white background text".
-- "category": 1-2 word category label
-- "sublabel": short phonetic hint or usage context, or empty string ""
-- "emoji": fallback emoji if image fails to load
-
-Skill level: ${level}
-Return ONLY the JSON array, nothing else.`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
-        system,
-        messages: [{ role: 'user', content: `Generate DTT flashcard data for: ${input}` }]
-      })
-    });
-
-    const data = await res.json();
-    const text = data.content.map(b => b.text || '').join('');
-    const parsed = JSON.parse(text.replace(/```json|```/g, '').trim());
-
-    cards = append ? [...cards, ...parsed] : parsed;
-    render(cards);
-    status.textContent = `${cards.length} card${cards.length !== 1 ? 's' : ''} — ${level}`;
-    actions.style.display = 'flex';
-  } catch(e) {
-    status.textContent = 'Something went wrong. Try again.';
-    if (!append) {
-      document.getElementById('grid').innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">⚠️</div>
-          <div class="empty-title">Could not generate cards</div>
-          <div class="empty-sub">Try again or check your connection.</div>
+  document.getElementById('grid').innerHTML = data.map((c, i) => {
+    if (isSightWord) {
+      return `
+        <div class="dtt-card">
+          <div class="card-img-wrap" style="background:#f0ede6; display:flex; align-items:center; justify-content:center; flex:1;">
+            <span style="font-size:52px; font-weight:700; color:#1c1917; letter-spacing:-1px;">${c.label}</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-word">${c.label}</div>
+            <div class="card-hint">${c.hint}</div>
+          </div>
         </div>`;
     }
-  }
-  btn.disabled = false;
-}
 
-function render(list) {
-  document.getElementById('grid').innerHTML = list.map((c, i) => {
-    const query = encodeURIComponent(c.imageQuery);
-    const imgUrl = `https://source.unsplash.com/400x400/?${query}`;
+    if (c.img) {
+      return `
+        <div class="dtt-card">
+          <div class="card-img-wrap">
+            <div class="card-emoji-fallback" id="fb-${i}">${c.emoji}</div>
+            <img
+              src="${c.img}"
+              alt="${c.label}"
+              loading="lazy"
+              style="opacity:0; transition: opacity 0.3s; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"
+              onload="this.style.opacity=1; document.getElementById('fb-${i}').style.display='none';"
+              onerror="this.style.display='none';"
+            />
+            <span class="card-cat">${c.hint.replace(/\//g,'')}</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-word">${c.label}</div>
+          </div>
+        </div>`;
+    }
+
     return `
-    <div class="dtt-card">
-      <div class="card-img-wrap">
-        <div class="img-placeholder" id="ph-${i}">${c.emoji}</div>
-        <img
-          src="${imgUrl}"
-          alt="${c.label}"
-          class="loading"
-          onload="this.classList.remove('loading');this.classList.add('loaded');document.getElementById('ph-${i}').style.display='none';"
-          onerror="this.style.display='none';"
-        />
-        <span class="card-cat">${c.category}</span>
-      </div>
-      <div class="card-footer">
-        <div class="card-word">${c.label}</div>
-        ${c.sublabel ? `<div class="card-hint">${c.sublabel}</div>` : ''}
-      </div>
-    </div>`;
+      <div class="dtt-card">
+        <div class="card-img-wrap">
+          <div class="card-emoji-fallback">${c.emoji}</div>
+          <span class="card-cat">${c.hint}</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-word">${c.label}</div>
+        </div>
+      </div>`;
   }).join('');
 }
-
-document.getElementById('req').addEventListener('keydown', e => {
-  if (e.key === 'Enter') generate();
-});
 </script>
 </body>
 </html>
