@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTT Material Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE6;
+    --border: #E2DDD6;
+    --text: #1C1917;
+    --muted: #78716C;
+    --hint: #A8A29E;
+    --accent: #2E6BE6;
+    --accent-bg: #EEF3FD;
+    --accent-text: #1D4ED8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+
+  .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 2rem; }
+  .logo-mark {
+    width: 30px; height: 30px; background: var(--accent);
+    border-radius: 7px; display: flex; align-items: center;
+    justify-content: center; color: white; font-size: 15px; font-weight: 600;
+  }
+  .logo-text { font-size: 13px; font-weight: 600; }
+  .logo-sub { font-size: 11px; color: var(--muted); }
+
+  .sidebar-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--hint); margin-bottom: 6px;
+  }
+  .sidebar-section { margin-bottom: 1.5rem; }
+
+  .level-btn {
+    width: 100%; text-align: left; padding: 7px 10px;
+    border-radius: 7px; border: none; background: transparent;
+    color: var(--muted); font-family: inherit; font-size: 13px;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: background 0.1s, color 0.1s;
+  }
+  .level-btn:hover { background: var(--surface2); color: var(--text); }
+  .level-btn.active { background: var(--accent-bg); color: var(--accent-text); font-weight: 500; }
+  .level-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .level-btn.active .level-dot { opacity: 1; }
+
+  .cat-btn {
+    width: 100%; text-align: left; padding: 6px 10px;
+    border-radius: 7px; border: none; background: transparent;
+    color: var(--muted); font-family: inherit; font-size: 13px;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: background 0.1s, color 0.1s;
+  }
+  .cat-btn:hover { background: var(--surface2); color: var(--text); }
+  .cat-icon { font-size: 14px; width: 18px; text-align: center; }
+
+  .sidebar-footer {
+    margin-top: auto; padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--hint); line-height: 1.6;
+  }
+
+  .main { flex: 1; padding: 2rem 2.5rem; }
+
+  .page-title { font-size: 21px; font-weight: 600; margin-bottom: 3px; }
+  .page-sub { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+
+  .input-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .input-row input {
+    flex: 1; padding: 10px 14px; font-size: 14px; font-family: inherit;
+    border: 1px solid var(--border); border-radius: 9px;
+    background: var(--bg); color: var(--text); outline: none;
+  }
+  .input-row input:focus { border-color: var(--accent); background: white; }
+  .input-row input::placeholder { color: var(--hint); }
+  .gen-btn {
+    padding: 10px 20px; font-size: 14px; font-family: inherit; font-weight: 500;
+    background: var(--accent); color: white; border: none; border-radius: 9px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .gen-btn:hover { opacity: 0.88; }
+  .gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip {
+    font-size: 12px; font-family: inherit; padding: 4px 11px;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--bg); color: var(--muted); cursor: pointer;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent-text); background: var(--accent-bg); }
+
+  .status-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; min-height: 28px;
+  }
+  .status-text { font-size: 13px; color: var(--muted); }
+  .status-actions { display: flex; gap: 6px; }
+  .act-btn {
+    font-size: 12px; font-family: inherit; padding: 5px 12px;
+    border: 1px solid var(--border); border-radius: 7px;
+    background: var(--surface); color: var(--text); cursor: pointer;
+  }
+  .act-btn:hover { background: var(--surface2); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .dtt-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    aspect-ratio: 3/4;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .dtt-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+  .card-img-wrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    background: var(--surface2);
+  }
+  .card-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .card-img-wrap img.loading { opacity: 0; }
+  .card-img-wrap img.loaded { opacity: 1; }
+
+  .img-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+  }
+
+  .card-cat {
+    position: absolute; top: 7px; right: 7px;
+    font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 2px 7px; border-radius: 999px;
+    background: rgba(255,255,255,0.9); color: var(--accent-text);
+    backdrop-filter: blur(4px);
+  }
+
+  .card-footer {
+    padding: 10px 10px 11px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .card-word { font-size: 15px; font-weight: 600; line-height: 1.2; }
+  .card-hint { font-size: 10px; color: var(--hint); margin-top: 2px; }
+
+  @keyframes shimmer {
+    0% { background-position: -600px 0; }
+    100% { background-position: 600px 0; }
+  }
+  .skel {
+    background: linear-gradient(90deg, var(--surface2) 25%, #e8e4dc 50%, var(--surface2) 75%);
+    background-size: 1200px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  .skel-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 13px; overflow: hidden; aspect-ratio: 3/4;
+    display: flex; flex-direction: column;
+  }
+  .skel-img { flex: 1; }
+  .skel-footer { height: 52px; border-top: 1px solid var(--border); padding: 10px; display: flex; flex-direction: column; gap: 5px; align-items: center; }
+  .skel-line { border-radius: 4px; }
+
+  .empty-state {
+    grid-column: 1/-1; text-align: center;
+    padding: 4rem 0; color: var(--hint);
+  }
+  .empty-icon { font-size: 44px; margin-bottom: 12px; }
+  .empty-title { font-size: 15px; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+  .empty-sub { font-size: 13px; }
+
+  @media print {
+    .sidebar, .input-card, .status-bar, .page-title, .page-sub { display: none !important; }
+    .main { padding: 0; }
+    body { background: white; }
+    .card-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .dtt-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .card-img-wrap img { opacity: 1 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">D</div>
+      <div>
+        <div class="logo-text">DTT Generator</div>
+        <div class="logo-sub">ABA materials</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Skill level</div>
+      <button class="level-btn active" onclick="setLevel(this,'Early learner')"><span class="level-dot"></span>Early learner</button>
+      <button class="level-btn" onclick="setLevel(this,'Intermediate')"><span class="level-dot"></span>Intermediate</button>
+      <button class="level-btn" onclick="setLevel(this,'Advanced')"><span class="level-dot"></span>Advanced</button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Quick categories</div>
+      <button class="cat-btn" onclick="quick('8 animal identification cards')"><span class="cat-icon">🐘</span>Animals</button>
+      <button class="cat-btn" onclick="quick('8 food and drink cards')"><span class="cat-icon">🍎</span>Food & drink</button>
+      <button class="cat-btn" onclick="quick('8 emotion cards')"><span class="cat-icon">😊</span>Emotions</button>
+      <button class="cat-btn" onclick="quick('8 body parts cards')"><span class="cat-icon">🖐</span>Body parts</button>
+      <button class="cat-btn" onclick="quick('8 community helper cards')"><span class="cat-icon">👩‍⚕️</span>Community helpers</button>
+      <button class="cat-btn" onclick="quick('Dolch pre-primer sight words, 8 cards')"><span class="cat-icon">🔤</span>Sight words</button>
+      <button class="cat-btn" onclick="quick('8 vehicle cards')"><span class="cat-icon">🚗</span>Vehicles</button>
+      <button class="cat-btn" onclick="quick('8 household item cards')"><span class="cat-icon">🏠</span>Household items</button>
+      <button class="cat-btn" onclick="quick('8 clothing item cards')"><span class="cat-icon">👕</span>Clothing</button>
+      <button class="cat-btn" onclick="quick('8 color and shape cards')"><span class="cat-icon">🎨</span>Colors & shapes</button>
+    </div>
+
+    <div class="sidebar-footer">
+      Print-ready 3×4 in cards.<br>
+      Generate → Print → Laminate.
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-title">DTT material generator</div>
+    <div class="page-sub">Type what you need or pick a category to get started.</div>
+
+    <div class="input-card">
+      <div class="input-row">
+        <input type="text" id="req" placeholder='e.g. "10 animal cards" or "sight words C-D, 8 cards"' />
+        <button class="gen-btn" id="genBtn" onclick="generate()">✦ Generate</button>
+      </div>
+      <div class="chips">
+        <span class="chip" onclick="quick('8 action verb cards')">Action verbs</span>
+        <span class="chip" onclick="quick('8 number cards 1 through 10')">Numbers 1–10</span>
+        <span class="chip" onclick="quick('8 weather cards')">Weather</span>
+        <span class="chip" onclick="quick('8 opposite concept cards')">Opposites</span>
+        <span class="chip" onclick="quick('8 preposition cards')">Prepositions</span>
+        <span class="chip" onclick="quick('8 classroom object cards')">Classroom items</span>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-text" id="status">Ready to generate.</div>
+      <div class="status-actions" id="statusActions" style="display:none;">
+        <button class="act-btn" onclick="addMore()">+ Add 8 more</button>
+        <button class="act-btn" onclick="nextLevel()">↑ Next level</button>
+        <button class="act-btn" onclick="window.print()">🖨 Print</button>
+      </div>
+    </div>
+
+    <div class="card-grid" id="grid">
+      <div class="empty-state">
+        <div class="empty-icon">🗂</div>
+        <div class="empty-title">No cards yet</div>
+        <div class="empty-sub">Pick a category or type a custom request above.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+let level = 'Early learner';
+let cards = [];
+let lastReq = '';
+
+function setLevel(btn, l) {
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  level = l;
+}
+
+function quick(text) {
+  document.getElementById('req').value = text;
+  generate();
+}
+
+function showSkeletons(n) {
+  document.getElementById('grid').innerHTML = Array(n).fill(0).map(() => `
+    <div class="skel-card">
+      <div class="skel-img skel"></div>
+      <div class="skel-footer">
+        <div class="skel-line skel" style="width:60%;height:13px;"></div>
+        <div class="skel-line skel" style="width:38%;height:9px;"></div>
+      </div>
+    </div>`).join('');
+}
+
+async function generate() {
+  const input = document.getElementById('req').value.trim();
+  if (!input) return;
+  lastReq = input;
+  await run(input, false);
+}
+
+async function addMore() { await run(lastReq, true); }
+
+async function nextLevel() {
+  const levels = ['Early learner','Intermediate','Advanced'];
+  const idx = levels.indexOf(level);
+  if (idx < levels.length - 1) {
+    level = levels[idx + 1];
+    document.querySelectorAll('.level-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim() === level);
+    });
+  }
+  await run(lastReq, false);
+}
+
+async function run(input, append) {
+  const status = document.getElementById('status');
+  const actions = document.getElementById('statusActions');
+  const btn = document.getElementById('genBtn');
+
+  btn.disabled = true;
+  status.textContent = 'Generating cards...';
+  if (!append) { actions.style.display = 'none'; showSkeletons(8); }
+
+  const system = `You are a specialist in ABA therapy DTT flashcard materials. Return ONLY a valid JSON array — no markdown, no backticks, no explanation whatsoever.
+
+Each object must have exactly these fields:
+- "label": the word shown on the card (1-3 words, sentence case)
+- "imageQuery": a short, specific Unsplash search query that will return a clear, clean photo of this exact item on a simple background. Be very specific. For objects, use queries like "red apple white background", "school bus isolated", "golden retriever dog". For emotions, use "child happy smiling", "person sad face". For community helpers, use the job title and action like "doctor examining patient". For sight words, use a simple scene that illustrates the word, e.g. for "the" use "simple white background text".
+- "category": 1-2 word category label
+- "sublabel": short phonetic hint or usage context, or empty string ""
+- "emoji": fallback emoji if image fails to load
+
+Skill level: ${level}
+Return ONLY the JSON array, nothing else.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        system,
+        messages: [{ role: 'user', content: `Generate DTT flashcard data for: ${input}` }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content.map(b => b.text || '').join('');
+    const parsed = JSON.parse(text.replace(/```json|```/g, '').trim());
+
+    cards = append ? [...cards, ...parsed] : parsed;
+    render(cards);
+    status.textContent = `${cards.length} card${cards.length !== 1 ? 's' : ''} — ${level}`;
+    actions.style.display = 'flex';
+  } catch(e) {
+    status.textContent = 'Something went wrong. Try again.';
+    if (!append) {
+      document.getElementById('grid').innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚠️</div>
+          <div class="empty-title">Could not generate cards</div>
+          <div class="empty-sub">Try again or check your connection.</div>
+        </div>`;
+    }
+  }
+  btn.disabled = false;
+}
+
+function render(list) {
+  document.getElementById('grid').innerHTML = list.map((c, i) => {
+    const query = encodeURIComponent(c.imageQuery);
+    const imgUrl = `https://source.unsplash.com/400x400/?${query}`;
+    return `
+    <div class="dtt-card">
+      <div class="card-img-wrap">
+        <div class="img-placeholder" id="ph-${i}">${c.emoji}</div>
+        <img
+          src="${imgUrl}"
+          alt="${c.label}"
+          class="loading"
+          onload="this.classList.remove('loading');this.classList.add('loaded');document.getElementById('ph-${i}').style.display='none';"
+          onerror="this.style.display='none';"
+        />
+        <span class="card-cat">${c.category}</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-word">${c.label}</div>
+        ${c.sublabel ? `<div class="card-hint">${c.sublabel}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('req').addEventListener('keydown', e => {
+  if (e.key === 'Enter') generate();
+});
+</script>
+</body>
+</html>
