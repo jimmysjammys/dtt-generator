@@ -45,6 +45,11 @@
   .page-meta { font-size: 13px; color: var(--muted); }
   .act-btn { font-size: 12px; font-family: inherit; padding: 6px 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; }
   .act-btn:hover { background: var(--surface2); }
+  .act-btn.active { background: var(--accent-bg); color: var(--accent-text); border-color: var(--accent-text); }
+
+  .card-grid.hide-labels .card-footer { visibility: hidden; }
+  .card-grid.hide-labels .dtt-card { cursor: pointer; }
+  .card-grid.hide-labels .dtt-card .card-img-wrap { border-radius: 0 0 12px 12px; }
 
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
 
@@ -128,7 +133,10 @@
         <div class="page-title" id="pageTitle">Select a category</div>
         <div class="page-meta" id="pageMeta">Choose from the sidebar to get started</div>
       </div>
-      <button class="act-btn" id="printBtn" style="display:none" onclick="window.print()">🖨 Print sheet</button>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <button class="act-btn" id="labelToggle" style="display:none" onclick="toggleLabels(this)">🏷 Hide labels</button>
+        <button class="act-btn" id="printBtn" style="display:none" onclick="window.print()">🖨 Print sheet</button>
+      </div>
     </div>
     <div class="card-grid" id="grid">
       <div class="empty-state">
@@ -554,6 +562,7 @@ function loadCat(btn, cat) {
   document.getElementById("pageTitle").textContent = CAT_NAMES[cat] || cat;
   document.getElementById("pageMeta").textContent = `${levelLabel}  ·  ${data.length} cards`;
   document.getElementById("printBtn").style.display = "inline-block";
+  document.getElementById("labelToggle").style.display = "inline-block";
 
   if (!data.length) {
     document.getElementById("grid").innerHTML = `<div class="empty-state"><div class="empty-icon">🗂</div><div class="empty-title">No cards at this level — try Early learner</div></div>`;
@@ -592,6 +601,13 @@ function loadCat(btn, cat) {
       </div>
     </div>`;
   }).join("");
+}
+function toggleLabels(btn) {
+  const grid = document.getElementById("grid");
+  const hiding = !grid.classList.contains("hide-labels");
+  grid.classList.toggle("hide-labels", hiding);
+  btn.textContent = hiding ? "🏷 Show labels" : "🏷 Hide labels";
+  btn.classList.toggle("active", hiding);
 }
 </script>
 </body>
