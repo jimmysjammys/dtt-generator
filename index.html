@@ -23,7 +23,7 @@
     border-right: 1px solid var(--border); display: flex; flex-direction: column;
     padding: 1.25rem 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto;
     transition: transform .25s ease;
-    z-index: 100;
+    z-index: 150;
   }
   .logo { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
   .logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 700; flex-shrink: 0; }
@@ -50,10 +50,11 @@
   .menu-btn {
     display: none;
     align-items: center; justify-content: center;
-    width: 36px; height: 36px; flex-shrink: 0;
+    width: 40px; height: 40px; flex-shrink: 0;
     border: 1px solid var(--border); border-radius: 8px;
-    background: var(--surface); cursor: pointer; font-size: 18px;
+    background: var(--surface); cursor: pointer; font-size: 20px;
     transition: background .1s;
+    position: relative; z-index: 200;
   }
   .menu-btn:hover { background: var(--surface2); }
   .top-bar-titles { min-width: 0; }
@@ -95,8 +96,9 @@
       position: fixed; left: 0; top: 0; height: 100vh;
       transform: translateX(-100%);
       box-shadow: 4px 0 20px rgba(0,0,0,.12);
+      pointer-events: none;
     }
-    .sidebar.open { transform: translateX(0); }
+    .sidebar.open { transform: translateX(0); pointer-events: auto; }
     .overlay { display: block; }
     .main { padding: 1rem; }
     .menu-btn { display: flex; }
