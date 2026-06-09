@@ -65,8 +65,107 @@
   .act-btn:hover { background: var(--surface2); }
   .act-btn.active { background: var(--accent-bg); color: var(--accent-text); border-color: var(--accent-text); }
 
-  /* ── Cards ── */
-  .card-grid.hide-labels .card-footer { visibility: hidden; }
+  /* ── Card selection ── */
+  .dtt-card { position: relative; cursor: pointer; }
+  .dtt-card.selected { outline: 3px solid var(--accent); outline-offset: -1px; }
+  .dtt-card.selected::after {
+    content: "✓";
+    position: absolute; top: 7px; left: 7px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: white;
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 22px; text-align: center;
+  }
+
+  /* ── Selection tray ── */
+  .sel-tray {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--text); color: white;
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; z-index: 300;
+    transform: translateY(100%);
+    transition: transform .25s ease;
+    box-shadow: 0 -4px 20px rgba(0,0,0,.2);
+  }
+  .sel-tray.visible { transform: translateY(0); }
+  .sel-tray-info { font-size: 14px; font-weight: 500; }
+  .sel-tray-info span { opacity: .65; font-weight: 400; font-size: 12px; margin-left: 6px; }
+  .sel-tray-actions { display: flex; gap: 8px; }
+  .tray-btn {
+    font-size: 13px; font-family: inherit; font-weight: 500;
+    padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer;
+  }
+  .tray-btn.primary { background: var(--accent); color: white; }
+  .tray-btn.primary:hover { opacity: .88; }
+  .tray-btn.ghost { background: rgba(255,255,255,.15); color: white; }
+  .tray-btn.ghost:hover { background: rgba(255,255,255,.25); }
+
+  /* ── Print modal ── */
+  .print-modal {
+    display: none; position: fixed; inset: 0;
+    background: var(--bg); z-index: 400; overflow-y: auto;
+    padding: 1.5rem;
+  }
+  .print-modal.open { display: block; }
+  .print-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px;
+  }
+  .print-header h2 { font-size: 18px; font-weight: 600; }
+  .print-header-actions { display: flex; gap: 8px; align-items: center; }
+  .print-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 12px;
+  }
+  .print-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column; aspect-ratio: 3/4;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    position: relative;
+  }
+  .print-card .p-img { flex: 1; display: flex; align-items: center; justify-content: center; background: var(--surface2); overflow: hidden; }
+  .print-card .p-img img { width: 75%; height: 75%; object-fit: contain; }
+  .print-card .p-img svg { width: 65%; height: 65%; }
+  .print-card .p-footer { padding: 9px 10px 10px; border-top: 1px solid var(--border); text-align: center; }
+  .print-card .p-footer.hidden { visibility: hidden; }
+  .print-card .p-word { font-size: 15px; font-weight: 600; }
+  .print-card .p-hint { font-size: 10px; color: var(--hint); margin-top: 2px; font-style: italic; }
+  .label-toggle-btn {
+    position: absolute; bottom: 44px; right: 6px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    font-size: 12px; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; z-index: 2; opacity: 0;
+    transition: opacity .15s;
+  }
+  .print-card:hover .label-toggle-btn { opacity: 1; }
+  .remove-btn {
+    position: absolute; top: 6px; right: 6px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(0,0,0,.5); color: white;
+    border: none; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .15s; z-index: 2;
+    line-height: 1;
+  }
+  .print-card:hover .remove-btn { opacity: 1; }
+
+  @media (max-width: 700px) {
+    .print-card-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+    .label-toggle-btn, .remove-btn { opacity: 1; }
+  }
+
+  @media print {
+    .shell, .sel-tray, .print-header { display: none !important; }
+    .print-modal { padding: 0; background: white; }
+    .print-card-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .print-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; border-radius: 8px; }
+    .label-toggle-btn, .remove-btn { display: none !important; }
+  }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 12px; }
   .dtt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; aspect-ratio: 3/4; box-shadow: 0 1px 3px rgba(0,0,0,.05); transition: box-shadow .15s, transform .15s; }
   .dtt-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.09); transform: translateY(-2px); }
@@ -184,8 +283,6 @@
         </div>
       </div>
       <div class="top-bar-actions">
-        <button class="act-btn" id="labelToggle" style="display:none" onclick="toggleLabels(this)">🏷 Hide labels</button>
-        <button class="act-btn" id="printBtn" style="display:none" onclick="window.print()">🖨 Print</button>
       </div>
     </div>
     <div class="card-grid" id="grid">
@@ -195,6 +292,31 @@
       </div>
     </div>
   </main>
+</div>
+
+<!-- Selection tray -->
+<div class="sel-tray" id="selTray">
+  <div class="sel-tray-info" id="selCount">0 cards selected</div>
+  <div class="sel-tray-actions">
+    <button class="tray-btn ghost" onclick="clearSelection()">Clear</button>
+    <button class="tray-btn primary" onclick="openPrintModal()">Build PDF →</button>
+  </div>
+</div>
+
+<!-- Print modal -->
+<div class="print-modal" id="printModal">
+  <div class="print-header">
+    <div>
+      <h2>Print preview</h2>
+      <div style="font-size:13px;color:var(--muted);margin-top:3px;">Tap the eye icon on each card to toggle its label. Tap × to remove.</div>
+    </div>
+    <div class="print-header-actions">
+      <button class="act-btn" onclick="toggleAllLabels()">🏷 Toggle all labels</button>
+      <button class="act-btn primary" onclick="window.print()" style="background:var(--accent);color:white;border-color:var(--accent);">🖨 Print</button>
+      <button class="act-btn" onclick="closePrintModal()">✕ Close</button>
+    </div>
+  </div>
+  <div class="print-card-grid" id="printGrid"></div>
 </div>
 
 <script>
@@ -592,8 +714,6 @@ function loadCat(btn, cat) {
   const levelLabel = currentLevel === "early" ? "Early learner" : "Intermediate";
   document.getElementById("pageTitle").textContent = CAT_NAMES[cat] || cat;
   document.getElementById("pageMeta").textContent = `${levelLabel}  ·  ${data.length} cards`;
-  document.getElementById("printBtn").style.display = "inline-block";
-  document.getElementById("labelToggle").style.display = "inline-block";
   if (window.innerWidth <= 700) closeSidebar();
 
   if (!data.length) {
@@ -607,7 +727,6 @@ function loadCat(btn, cat) {
   const isShape  = cat === "shapes";
   const isColor  = cat === "colors";
 
-  // SVG definitions for shapes — all same viewBox, same clean style
   const SHAPE_SVG = {
     Circle:    `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#E84545"/></svg>`,
     Square:    `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="4" fill="#E84545"/></svg>`,
@@ -621,81 +740,140 @@ function loadCat(btn, cat) {
     Pentagon:  `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,5 97,38 79,92 21,92 3,38" fill="#E84545"/></svg>`,
   };
 
-  // SVG color swatches — all circles, same size, each in its actual color
   const COLOR_SVG = {
-    Red:    `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#E53935"/></svg>`,
-    Blue:   `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#1E88E5"/></svg>`,
-    Yellow: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FDD835"/></svg>`,
-    Green:  `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#43A047"/></svg>`,
-    Orange: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FB8C00"/></svg>`,
-    Purple: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#8E24AA"/></svg>`,
-    Pink:   `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#F06292"/></svg>`,
-    Black:  `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#212121"/></svg>`,
-    White:  `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="2"/></svg>`,
-    Brown:  `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#795548"/></svg>`,
-    Gray:   `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#757575"/></svg>`,
-    Gold:   `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FFB300"/></svg>`,
+    Red:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#E53935"/></svg>`,
+    Blue:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#1E88E5"/></svg>`,
+    Yellow:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FDD835"/></svg>`,
+    Green:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#43A047"/></svg>`,
+    Orange:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FB8C00"/></svg>`,
+    Purple:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#8E24AA"/></svg>`,
+    Pink:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#F06292"/></svg>`,
+    Black:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#212121"/></svg>`,
+    White:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="2"/></svg>`,
+    Brown:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#795548"/></svg>`,
+    Gray:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#757575"/></svg>`,
+    Gold:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="42" fill="#FFB300"/></svg>`,
   };
 
-  document.getElementById("grid").innerHTML = data.map(c => {
+  // Build card objects with all rendering info attached
+  const cardObjects = data.map(c => {
     const label = typeof c === "string" ? c : c.label;
-    const hint  = typeof c === "string" ? c.hint || "" : c.hint || "";
+    const hint  = typeof c === "string" ? "" : (c.hint || "");
     const num   = c.num || null;
+    const id    = `${cat}__${label}`;
+    let imgHtml = "";
 
     if (isSight) {
-      return `<div class="dtt-card">
-        <div class="sight-card-img"><span class="sight-word-big">${label}</span></div>
-        <div class="card-footer"><div class="card-word">${label}</div><div class="card-hint">${hint}</div></div>
-      </div>`;
+      imgHtml = `<div class="sight-card-img"><span class="sight-word-big">${label}</span></div>`;
+    } else if (isLetter) {
+      imgHtml = `<div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--text);line-height:1;">${label}</span></div>`;
+    } else if (isNumber) {
+      imgHtml = `<div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--accent);line-height:1;">${num}</span></div>`;
+    } else if (isShape) {
+      imgHtml = `<div class="card-img-wrap" style="padding:18px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">${SHAPE_SVG[label]||""}</div></div>`;
+    } else if (isColor) {
+      imgHtml = `<div class="card-img-wrap" style="padding:18px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">${COLOR_SVG[label]||""}</div></div>`;
+    } else {
+      const src = IMGS[label] || null;
+      imgHtml = `<div class="card-img-wrap">${src ? `<img src="${src}" alt="${label}"/>` : `<span style="font-size:52px">${label}</span>`}</div>`;
     }
 
-    if (isLetter) {
-      return `<div class="dtt-card">
-        <div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--text);line-height:1;font-family:'DM Sans',sans-serif;">${label}</span></div>
-        <div class="card-footer"><div class="card-word">${label}</div></div>
-      </div>`;
-    }
+    return { id, label, hint, imgHtml, cat };
+  });
 
-    if (isNumber) {
-      return `<div class="dtt-card">
-        <div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--accent);line-height:1;font-family:'DM Sans',sans-serif;">${num}</span></div>
-        <div class="card-footer"><div class="card-word">${label}</div></div>
-      </div>`;
-    }
-
-    if (isShape) {
-      const svg = SHAPE_SVG[label] || "";
-      return `<div class="dtt-card">
-        <div class="card-img-wrap" style="padding:18px;">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">${svg}</div>
-        </div>
-        <div class="card-footer"><div class="card-word">${label}</div><div class="card-hint">${hint}</div></div>
-      </div>`;
-    }
-
-    if (isColor) {
-      const svg = COLOR_SVG[label] || "";
-      return `<div class="dtt-card">
-        <div class="card-img-wrap" style="padding:18px;">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">${svg}</div>
-        </div>
-        <div class="card-footer"><div class="card-word">${label}</div></div>
-      </div>`;
-    }
-
-    const imgSrc = IMGS[label] || null;
-
-    return `<div class="dtt-card">
-      <div class="card-img-wrap">
-        ${imgSrc ? `<img src="${imgSrc}" alt="${label}" />` : `<span style="font-size:52px">${label}</span>`}
-      </div>
+  document.getElementById("grid").innerHTML = cardObjects.map(card => {
+    const sel = selectedCards.has(card.id) ? "selected" : "";
+    return `<div class="dtt-card ${sel}" onclick="toggleCard(this,'${card.id}')">
+      ${card.imgHtml}
       <div class="card-footer">
-        <div class="card-word">${label}</div>
-        ${hint ? `<div class="card-hint">${hint}</div>` : ""}
+        <div class="card-word">${card.label}</div>
+        ${card.hint ? `<div class="card-hint">${card.hint}</div>` : ""}
       </div>
     </div>`;
   }).join("");
+
+  // Store card objects for later retrieval
+  cardObjects.forEach(c => cardCache[c.id] = c);
 }
+
+// ── Selection state ──
+const selectedCards = new Set();
+const cardCache = {};
+
+function toggleCard(el, id) {
+  if (selectedCards.has(id)) {
+    selectedCards.delete(id);
+    el.classList.remove("selected");
+  } else {
+    selectedCards.add(id);
+    el.classList.add("selected");
+  }
+  updateTray();
+}
+
+function updateTray() {
+  const tray = document.getElementById("selTray");
+  const count = selectedCards.size;
+  document.getElementById("selCount").innerHTML =
+    `${count} card${count !== 1 ? "s" : ""} selected <span>tap cards to add/remove</span>`;
+  tray.classList.toggle("visible", count > 0);
+}
+
+function clearSelection() {
+  selectedCards.clear();
+  document.querySelectorAll(".dtt-card.selected").forEach(el => el.classList.remove("selected"));
+  updateTray();
+}
+
+// ── Print modal ──
+function openPrintModal() {
+  const modal = document.getElementById("printModal");
+  const grid  = document.getElementById("printGrid");
+
+  grid.innerHTML = [...selectedCards].map(id => {
+    const card = cardCache[id];
+    if (!card) return "";
+    return `<div class="print-card" id="pc-${id.replace(/[^a-z0-9]/gi,'_')}">
+      ${card.imgHtml}
+      <div class="p-footer" id="pf-${id.replace(/[^a-z0-9]/gi,'_')}">
+        <div class="p-word">${card.label}</div>
+        ${card.hint ? `<div class="p-hint">${card.hint}</div>` : ""}
+      </div>
+      <button class="label-toggle-btn" onclick="togglePrintLabel('${id.replace(/'/g,"\\'")}',this)" title="Toggle label">👁</button>
+      <button class="remove-btn" onclick="removePrintCard('${id.replace(/'/g,"\\'")}')">×</button>
+    </div>`;
+  }).join("");
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closePrintModal() {
+  document.getElementById("printModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function togglePrintLabel(id, btn) {
+  const safeId = id.replace(/[^a-z0-9]/gi,'_');
+  const footer = document.getElementById(`pf-${safeId}`);
+  if (footer) footer.classList.toggle("hidden");
+}
+
+function removePrintCard(id) {
+  const safeId = id.replace(/[^a-z0-9]/gi,'_');
+  const el = document.getElementById(`pc-${safeId}`);
+  if (el) el.remove();
+  selectedCards.delete(id);
+  updateTray();
+  if (selectedCards.size === 0) closePrintModal();
+}
+
+function toggleAllLabels() {
+  const footers = document.querySelectorAll("#printGrid .p-footer");
+  const anyVisible = [...footers].some(f => !f.classList.contains("hidden"));
+  footers.forEach(f => f.classList.toggle("hidden", anyVisible));
+}
+
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -705,13 +883,6 @@ function toggleSidebar() {
 function closeSidebar() {
   document.getElementById("sidebar").classList.remove("open");
   document.getElementById("overlay").classList.remove("visible");
-}
-function toggleLabels(btn) {
-  const grid = document.getElementById("grid");
-  const hiding = !grid.classList.contains("hide-labels");
-  grid.classList.toggle("hide-labels", hiding);
-  btn.textContent = hiding ? "🏷 Show labels" : "🏷 Hide labels";
-  btn.classList.toggle("active", hiding);
 }
 </script>
 </body>
