@@ -184,8 +184,9 @@
     display: none; position: fixed; inset: 0;
     background: rgba(0,0,0,.35); z-index: 99;
     opacity: 0; transition: opacity .25s;
+    pointer-events: none;
   }
-  .overlay.visible { opacity: 1; }
+  .overlay.visible { opacity: 1; pointer-events: auto; }
 
   /* ── Mobile ── */
   @media (max-width: 700px) {
@@ -197,7 +198,7 @@
       pointer-events: none;
     }
     .sidebar.open { transform: translateX(0); pointer-events: auto; }
-    .overlay { display: block; }
+    .overlay { display: block; pointer-events: none; }
     .main { padding: 1rem; }
     .menu-btn { display: flex; }
     .card-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
