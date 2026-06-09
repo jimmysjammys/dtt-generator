@@ -474,25 +474,20 @@ const LIBRARY = {
   },
   numbers: {
     early: [
-      {label:"1 – One",hint:"count: 1"},{label:"2 – Two",hint:"count: 2"},
-      {label:"3 – Three",hint:"count: 3"},{label:"4 – Four",hint:"count: 4"},
-      {label:"5 – Five",hint:"count: 5"},{label:"6 – Six",hint:"count: 6"},
-      {label:"7 – Seven",hint:"count: 7"},{label:"8 – Eight",hint:"count: 8"},
-      {label:"9 – Nine",hint:"count: 9"},{label:"10 – Ten",hint:"count: 10"},
+      {label:"One",num:"1"},{label:"Two",num:"2"},{label:"Three",num:"3"},
+      {label:"Four",num:"4"},{label:"Five",num:"5"},{label:"Six",num:"6"},
+      {label:"Seven",num:"7"},{label:"Eight",num:"8"},{label:"Nine",num:"9"},
+      {label:"Ten",num:"10"},
     ],
     intermediate: [],
   },
   letters: {
     early: [
-      {label:"A",hint:"Apple"},{label:"B",hint:"Ball"},{label:"C",hint:"Cat"},
-      {label:"D",hint:"Dog"},{label:"E",hint:"Egg"},{label:"F",hint:"Fish"},
-      {label:"G",hint:"Grapes"},{label:"H",hint:"Horse"},{label:"I",hint:"Ice cream"},
-      {label:"J",hint:"Juice"},{label:"K",hint:"Kangaroo"},{label:"L",hint:"Lion"},
-      {label:"M",hint:"Milk"},{label:"N",hint:"Nose"},{label:"O",hint:"Orange"},
-      {label:"P",hint:"Pig"},{label:"Q",hint:"Queen"},{label:"R",hint:"Rabbit"},
-      {label:"S",hint:"Sheep"},{label:"T",hint:"Train"},{label:"U",hint:"Umbrella"},
-      {label:"V",hint:"Van"},{label:"W",hint:"Water"},{label:"X",hint:"X-ray"},
-      {label:"Y",hint:"Yarn"},{label:"Z",hint:"Zebra"},
+      {label:"A"},{label:"B"},{label:"C"},{label:"D"},{label:"E"},{label:"F"},
+      {label:"G"},{label:"H"},{label:"I"},{label:"J"},{label:"K"},{label:"L"},
+      {label:"M"},{label:"N"},{label:"O"},{label:"P"},{label:"Q"},{label:"R"},
+      {label:"S"},{label:"T"},{label:"U"},{label:"V"},{label:"W"},{label:"X"},
+      {label:"Y"},{label:"Z"},
     ],
     intermediate: [],
   },
@@ -517,21 +512,7 @@ const LIBRARY = {
   },
 };
 
-// Letter-to-image mapping for alphabet cards
-const LETTER_IMG = {
-  A:"Apple", B:"Ball", C:"Cat", D:"Dog", E:"Egg", F:"Fish",
-  G:"Grapes", H:"Horse", I:"Juice", J:"Juice", K:"Kangaroo",
-  L:"Lion", M:"Milk", N:"Nose", O:"Orange", P:"Pig",
-  Q:"Rabbit", R:"Rabbit", S:"Sheep", T:"Train", U:"Water",
-  V:"Car", W:"Water", X:"Book", Y:"Sweater", Z:"Zebra",
-};
-
-// Number-to-image mapping
-const NUM_IMG = {
-  "1 – One":"Apple","2 – Two":"Egg","3 – Three":"Carrot",
-  "4 – Four":"Grapes","5 – Five":"Star","6 – Six":"Fish",
-  "7 – Seven":"Banana","8 – Eight":"Strawberry","9 – Nine":"Orange","10 – Ten":"Cookie",
-};
+// Letter-to-image mapping removed — letters and numbers now render as large text
 
 let currentLevel = "early";
 let currentCat = null;
@@ -576,6 +557,7 @@ function loadCat(btn, cat) {
   document.getElementById("grid").innerHTML = data.map(c => {
     const label = typeof c === "string" ? c : c.label;
     const hint  = typeof c === "string" ? c.hint || "" : c.hint || "";
+    const num   = c.num || null;
 
     if (isSight) {
       return `<div class="dtt-card">
@@ -584,20 +566,29 @@ function loadCat(btn, cat) {
       </div>`;
     }
 
-    let imgKey = label;
-    if (isLetter) imgKey = LETTER_IMG[label] || label;
-    if (isNumber) imgKey = NUM_IMG[label] || label;
+    if (isLetter) {
+      return `<div class="dtt-card">
+        <div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--text);line-height:1;font-family:'DM Sans',sans-serif;">${label}</span></div>
+        <div class="card-footer"><div class="card-word">${label}</div></div>
+      </div>`;
+    }
 
-    const imgSrc = IMGS[imgKey] || IMGS[label] || null;
+    if (isNumber) {
+      return `<div class="dtt-card">
+        <div class="sight-card-img"><span style="font-size:96px;font-weight:700;color:var(--accent);line-height:1;font-family:'DM Sans',sans-serif;">${num}</span></div>
+        <div class="card-footer"><div class="card-word">${label}</div></div>
+      </div>`;
+    }
+
+    const imgSrc = IMGS[label] || null;
 
     return `<div class="dtt-card">
       <div class="card-img-wrap">
-        ${imgSrc ? `<img src="${imgSrc}" alt="${label}" />` : `<span style="font-size:52px">${hint}</span>`}
+        ${imgSrc ? `<img src="${imgSrc}" alt="${label}" />` : `<span style="font-size:52px">${label}</span>`}
       </div>
       <div class="card-footer">
         <div class="card-word">${label}</div>
-        ${hint && !isLetter && !isNumber ? `<div class="card-hint">${hint}</div>` : ""}
-        ${isLetter ? `<div class="card-hint">${hint}</div>` : ""}
+        ${hint ? `<div class="card-hint">${hint}</div>` : ""}
       </div>
     </div>`;
   }).join("");
